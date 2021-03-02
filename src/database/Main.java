@@ -1,6 +1,9 @@
 package database;
 
+import org.w3c.dom.Text;
+
 import java.util.LinkedHashMap;
+import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,6 +18,11 @@ public class Main {
         fields.put("text", "text");
         fields.put("x", "int");
         fields.put("y", "int");
-        TableCreator.create(url, "Slides", fields);
+        TableCreator.create(url, "Text", fields);
+
+        InsertRecords.insertText(url,"Hello World", 100, 400);
+        InsertRecords.insertText(url, "Hello World", 200, 200);
+
+        RetrieveRecords.selectAll(url, "Text");
     }
 }

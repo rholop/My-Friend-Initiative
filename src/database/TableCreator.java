@@ -33,7 +33,7 @@ public class TableCreator {
 
         try {
             // Connect to the database and execute the sql statement
-            Connection conn = DriverManager.getConnection(url);
+            Connection conn = DatabaseConnector.connect(url).conn;
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
 
