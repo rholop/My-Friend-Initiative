@@ -3,7 +3,15 @@ package database;
 import javax.xml.crypto.Data;
 import java.sql.*;
 
+/***
+ * Retrieves records from the table and prints them
+ */
 public class RetrieveRecords {
+    /***
+     * Selects every record from the table and prints them
+     * @param url The SQLite URL
+     * @param tableName The name of the table to select from.
+     */
     public static void selectAll(String url, String tableName) {
         String sql = "SELECT * FROM " + tableName;
 
