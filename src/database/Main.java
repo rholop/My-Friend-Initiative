@@ -18,11 +18,16 @@ public class Main {
         fields.put("text", "text");
         fields.put("x", "int");
         fields.put("y", "int");
+        fields.put("font", "text");
+        fields.put("size", "double");
+        fields.put("color", "text");
         TableCreator.create(url, "Text", fields);
 
-        InsertRecords.insertText(url,"Hello World", 100, 400);
-        InsertRecords.insertText(url, "Hello World", 200, 200);
+        InsertRecords.insertText(url,"Hello World", 100, 400, "Times New Roman", 11.5, "#000000");
+        InsertRecords.insertText(url, "Hello World", 200, 200, "Helvetica", 12, "#66ccff");
 
+        String[] stuff = {"text", "x"};
         RetrieveRecords.selectAll(url, "Text");
+        RetrieveRecords.selectSome(url, "Text", stuff);
     }
 }

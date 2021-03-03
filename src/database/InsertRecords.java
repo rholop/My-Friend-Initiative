@@ -15,14 +15,17 @@ public class InsertRecords {
      * @param x The location of the text on the x axis
      * @param y The location of the text on the y axis
      */
-    public static void insertText(String url, String text, int x, int y) {
-        String sql = "INSERT INTO Text(text, x, y) VALUES(?,?,?)";
+    public static void insertText(String url, String text, int x, int y, String font, double size, String color) {
+        String sql = "INSERT INTO Text(text, x, y, font, size, color) VALUES(?,?,?,?,?,?)";
         try{
             DatabaseConnector connector = DatabaseConnector.connect(url);
             PreparedStatement pstmt = connector.conn.prepareStatement(sql);
             pstmt.setString(1, text);
             pstmt.setInt(2, x);
             pstmt.setInt(3, y);
+            pstmt.setString(4, font);
+            pstmt.setDouble(5, size);
+            pstmt.setString(6, color);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
