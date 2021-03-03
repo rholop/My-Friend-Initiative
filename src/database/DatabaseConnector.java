@@ -9,8 +9,8 @@ public class DatabaseConnector {
     private static DatabaseConnector instance = null;
     Connection conn = null;
     /***
-     * Static method for connecting to the database at the specified URL
-     * @param url The URL of the database that you are trying to access
+     * Private constructor for connecting to the database at the specified URL using the Singleton pattern
+     * @param url The SQLite database URL
      */
     private DatabaseConnector(String url) {
         try {
@@ -22,6 +22,11 @@ public class DatabaseConnector {
         }
     }
 
+    /***
+     * Singleton implementation of connecting to a database
+     * @param url The SQLite database URL
+     * @return A DatabaseConnector object
+     */
     public static DatabaseConnector connect(String url) {
         if (instance == null) {
             instance = new DatabaseConnector(url);
