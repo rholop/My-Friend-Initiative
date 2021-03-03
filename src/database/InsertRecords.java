@@ -1,6 +1,8 @@
 package database;
 
 import java.sql.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 //TODO: Make insert records into an abstract class that is inherited by insertText, insertImage, etc.
 
@@ -8,6 +10,44 @@ import java.sql.*;
  * Inserts records into tables.
  */
 public class InsertRecords {
+    /***
+     * Inserts records into the specified table
+     * @param url The SQLite URL
+     * @param tableName The name of the table that you want to insert the records into
+     * @param records The records to insert into the table
+     */
+    public static void insertRecord(String url, String tableName, LinkedHashMap<String, Object> records) {
+        String sql = "INSERT INTO " + tableName + "(";
+        int i = 0;
+        for (Map.Entry<String, Object> set : records.entrySet()) {
+            if (i < records.size() - 1) {
+                sql += set.getKey() + ", ";
+                i++;
+            } else {
+                sql += set.getKey() + ")";
+            }
+        }
+        sql += " VALUES(";
+        for (i=0; i<records.size(); i++) {
+            if (i < records.size() - 1) {
+                sql += "?,";
+            } else {
+                sql += "?)";
+            }
+        }
+        try{
+            DatabaseConnector connector = DatabaseConnector.connect(url);
+            PreparedStatement pstmt = connector.conn.prepareStatement(sql);
+            i = 1;
+            for (Map.Entry<String, Object> set : records.entrySet()) {
+                pstmt.setObject(i, set.getValue());
+                i++;
+            }
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     /***
      * Inserts text data into the text table
      * @param url The URL of the SQLite database
