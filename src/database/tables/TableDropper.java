@@ -1,4 +1,7 @@
-package database;
+package database.tables;
+
+import database.DatabaseConnector;
+import javafx.scene.control.Tab;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -1,4 +1,6 @@
-package database;
+package database.records;
+
+import database.DatabaseConnector;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
@@ -6,34 +8,12 @@ import java.sql.*;
 /***
  * Retrieves records from the table and prints them
  */
-public class RetrieveRecords {
+public abstract class RetrieveRecords {
     /***
      * Selects every record from the table and prints them
      * @param url The SQLite URL
-     * @param tableName The name of the table to select from.
      */
-    public static void selectAll(String url, String tableName) {
-        String sql = "SELECT * FROM " + tableName;
-
-        try {
-            Connection conn = DatabaseConnector.connect(url).conn;
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            // loop through the result set
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") +  "\t" +
-                        rs.getString("text") + "\t" +
-                        rs.getInt("x") + "\t" +
-                        rs.getInt("y") + "\t" +
-                        rs.getString("font") + "\t" +
-                        rs.getDouble("size") + "\t" +
-                        rs.getString("color"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    public abstract void selectAll(String url);
 
     /***
      * Static method that selects some of the fields in the table

@@ -1,4 +1,7 @@
-package database;
+package database.records;
+
+import database.DatabaseConnector;
+import database.tables.TableCreator;
 
 import java.sql.*;
 import java.util.LinkedHashMap;
@@ -49,7 +52,7 @@ public class InsertRecords {
         }
     }
     /***
-     * Inserts text data into the text table
+     * Inserts text data into the Text table
      * @param url The URL of the SQLite database
      * @param text The text to be stored
      * @param x The location of the text on the x axis
@@ -69,6 +72,25 @@ public class InsertRecords {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /***
+     * Inserts slide data into the Slide table
+     * @param url The SQLite URL
+     * @param slide_number The number representing which slide is the current slide
+     * @param text_id The id of the Text table attached to the slide
+     */
+    public static void insertSlide(String url, int slide_number, int text_id) {
+        String sql = "INSERT INTO Slide(slide_number, text_id) VALUES(?,?)";
+        try {
+            DatabaseConnector connector = DatabaseConnector.connect(url);
+            PreparedStatement pstmt = connector.conn.prepareStatement(sql);
+            pstmt.setInt(1, slide_number);
+            pstmt.setInt(2, text_id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
