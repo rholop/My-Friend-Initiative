@@ -7,7 +7,7 @@ import java.sql.*;
  */
 public class DatabaseConnector {
     private static DatabaseConnector instance = null;
-    Connection conn = null;
+    public Connection conn = null;
     /***
      * Private constructor for connecting to the database at the specified URL using the Singleton pattern
      * @param url The SQLite database URL

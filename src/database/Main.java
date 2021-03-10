@@ -1,9 +1,13 @@
 package database;
 
-import org.w3c.dom.Text;
+import database.records.InsertRecords;
+
+import database.records.RetrieveRecords;
+import database.records.RetrieveSlideRecords;
+import database.records.RetrieveTextRecords;
+import database.tables.TableCreator;
 
 import java.util.LinkedHashMap;
-import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,15 +18,33 @@ public class Main {
         DatabaseCreator.create("C:/sqlite/db/", "name");
         DatabaseConnector.connect(url);
 
+        // Create the tables
         LinkedHashMap<String, String> fields = new LinkedHashMap<>();
         fields.put("text", "text");
         fields.put("x", "int");
         fields.put("y", "int");
-        TableCreator.create(url, "Text", fields);
+        fields.put("font", "text");
+        fields.put("size", "double");
+        fields.put("color", "text");
 
-        InsertRecords.insertText(url,"Hello World", 100, 400);
-        InsertRecords.insertText(url, "Hello World", 200, 200);
+        LinkedHashMap<String, String> slideFields = new LinkedHashMap<>();
+        slideFields.put("slide_number", "int");
+        LinkedHashMap<String, String> foreignKeys = new LinkedHashMap<>();
+        foreignKeys.put("text_id", "Text(id)");
 
-        RetrieveRecords.selectAll(url, "Text");
+        // Create the tables
+        TableCreator.create(url, "Text", fields, null);
+        TableCreator.create(url, "Slide", slideFields, foreignKeys);
+
+        // Add records to the tables
+        InsertRecords.insertText(url,"Hello World", 100, 400, "Times New Roman", 11.5, "#000000");
+        InsertRecords.insertText(url,"\u0989", 100, 400, "Times New Roman", 11.5, "#000000");
+        InsertRecords.insertText(url, "Hello World", 200, 200, "Helvetica", 12, "#66ccff");
+
+        InsertRecords.insertSlide(url, 1, 12);
+
+        // Retrieve all of the values from the tables
+        new RetrieveTextRecords().selectAll(url);
+        new RetrieveSlideRecords().selectAll(url);
     }
 }
