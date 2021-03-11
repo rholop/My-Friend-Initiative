@@ -112,6 +112,13 @@ public class Text {
         this.x = x;
         this.y = y;
     }
+
+    /**
+     * Retrieves text object from the database
+     */
+    public void getFromDB() {
+
+    }
     /**
      * Displays the text on the slide
      */
