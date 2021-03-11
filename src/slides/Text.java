@@ -119,6 +119,7 @@ public class Text {
     public void getFromDB() {
 
     }
+
     /**
      * Displays the text on the slide
      */
