@@ -98,6 +98,33 @@ public class InsertRecords {
         }
     }
 
+    /**
+     * Inserts image data into the Image table
+     * @param url The URL of the SQLite database
+     * @param file_location The location of the image file
+     * @param height The height of the image in pixels
+     * @param width The width of the image in pixels
+     * @param x The x alignment of the image
+     * @param y The y alignment of the image
+     */
+    public static void insertImage(String url, String file_location, double height, double width, double x, double y, int slide_number) {
+        String sql = "INSERT INTO Image(file_location, height, width, x, y) VALUES(?,?,?,?,?)";
+
+        try{
+            DatabaseConnector connector = DatabaseConnector.connect(url);
+            PreparedStatement pstmt = connector.conn.prepareStatement(sql);
+            pstmt.setString(1, file_location);
+            pstmt.setDouble(2, height);
+            pstmt.setDouble(3, width);
+            pstmt.setDouble(4, x);
+            pstmt.setDouble(5, y);
+            pstmt.setInt(6, slide_number);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     /***
      * Inserts slide data into the Slide table
      * @param url The SQLite URL

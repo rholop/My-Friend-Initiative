@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /**
- * Retrieves records from the Sound table
+ * Retrieves records from the Image table
  */
-public class RetrieveSoundRecords extends RetrieveRecords {
+public class RetrieveImageRecords extends RetrieveRecords {
     /**
-     * Selects all records from the Sound table
-     * @param url The SQLite URL
-     * @return An ArrayList of the records in the table
+     * Selects all records from the Image table
+     * @param url The SQLite
+     * @return An ArrayList of all the records in the table
      */
     @Override
     public ArrayList<LinkedHashMap<String, Object>> selectAll(String url) {
@@ -31,7 +31,10 @@ public class RetrieveSoundRecords extends RetrieveRecords {
             while (rs.next()) {
                 LinkedHashMap<String, Object> result = new LinkedHashMap<>();
                 result.put("file_location", rs.getString("file_location"));
-                result.put("volume", rs.getInt("volume"));
+                result.put("height", rs.getDouble("height"));
+                result.put("width", rs.getDouble("width"));
+                result.put("x", rs.getDouble("x"));
+                result.put("y", rs.getDouble("y"));
                 result.put("slide_number", rs.getObject("slide_number"));
                 result.put("id", rs.getObject("id"));
                 results.add(result);
@@ -44,9 +47,9 @@ public class RetrieveSoundRecords extends RetrieveRecords {
     }
 
     /***
-     * Selects all records from the Sound table where the given slide number is
+     * Selects all records from the Image table where the given slide number is
      * @param url The SQLite URL
-     * @param slideNumber the number of the slide to select sound from
+     * @param slideNumber the number of the slide to select image from
      */
     public ArrayList<LinkedHashMap<String, Object>> selectAllFromSlide(String url, int slideNumber) {
         String sql = "SELECT * FROM Sound WHERE slide_number = " + slideNumber + ";";
@@ -59,7 +62,10 @@ public class RetrieveSoundRecords extends RetrieveRecords {
             while (rs.next()) {
                 LinkedHashMap<String, Object> result = new LinkedHashMap<>();
                 result.put("file_location", rs.getString("file_location"));
-                result.put("volume", rs.getInt("volume"));
+                result.put("height", rs.getDouble("height"));
+                result.put("width", rs.getDouble("width"));
+                result.put("x", rs.getDouble("x"));
+                result.put("y", rs.getDouble("y"));
                 result.put("slide_number", rs.getObject("slide_number"));
                 result.put("id", rs.getObject("id"));
                 results.add(result);

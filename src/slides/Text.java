@@ -222,6 +222,13 @@ public class Text {
     }
 
     /**
+     * Removes the text from the database
+     */
+    public void removeFromDB() {
+        RemoveRecords.remove("jdbc:sqlite:C:/sqlite/db/name.db", ID, "Text");
+    }
+
+    /**
      * Displays the text on the slide
      */
     public void display() {
