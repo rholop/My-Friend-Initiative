@@ -22,6 +22,7 @@ public class Text {
      * @param size The text's size
      * @param font The text's font
      * @param color The text's color
+     * @param ID The ID of the text in the database
      */
     public Text(String content, int x, int y, double size, String font, String color, int ID) {
         this.content = content;
