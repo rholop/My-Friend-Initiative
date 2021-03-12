@@ -14,6 +14,7 @@ public abstract class RetrieveRecords {
     /***
      * Selects every record from the table and prints them
      * @param url The SQLite URL
+     * @return An ArrayList of all the records in the table
      */
     public abstract ArrayList<LinkedHashMap<String, Object>> selectAll(String url);
 

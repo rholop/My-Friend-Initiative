@@ -3,7 +3,6 @@ package slides;
 import database.records.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class Text {
@@ -13,7 +12,7 @@ public class Text {
     private double size;
     private String font;
     private String color;
-    private int ID = -1;
+    private int ID;
 
     /**
      * Constructor for the Text class
@@ -91,7 +90,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("text", content);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 
@@ -104,7 +103,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("x", x);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 
@@ -117,7 +116,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("y", y);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 
@@ -130,7 +129,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("size", size);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 
@@ -143,7 +142,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("font", font);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 
@@ -156,7 +155,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("color", color);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 
@@ -172,7 +171,7 @@ public class Text {
         update.put("x", x);
         update.put("y", y);
         if (ID != -1) {
-            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
         }
     }
 

@@ -9,18 +9,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-/***
- * Retrieves records from the Text table
+/**
+ * Retrieves records from the Sound table
  */
-public class RetrieveTextRecords extends RetrieveRecords {
-    /***
-     * Selects all records from the Text table
+public class RetrieveSoundRecords extends RetrieveRecords {
+    /**
+     * Selects all records from the Sound table
      * @param url The SQLite URL
      * @return An ArrayList of the records in the table
      */
+    @Override
     public ArrayList<LinkedHashMap<String, Object>> selectAll(String url) {
-        String sql = "SELECT * FROM Text";
+        String sql = "SELECT * FROM Sound";
         ArrayList<LinkedHashMap<String, Object>> results = new ArrayList<>();
+
         try {
             Connection conn = DatabaseConnector.connect(url).conn;
             Statement stmt = conn.createStatement();
@@ -28,12 +30,8 @@ public class RetrieveTextRecords extends RetrieveRecords {
             // loop through the result set
             while (rs.next()) {
                 LinkedHashMap<String, Object> result = new LinkedHashMap<>();
-                result.put("text", rs.getString("text"));
-                result.put("x", rs.getInt("x"));
-                result.put("y", rs.getInt("y"));
-                result.put("font", rs.getString("font"));
-                result.put("size", rs.getDouble("size"));
-                result.put("color", rs.getString("color"));
+                result.put("file_location", rs.getString("file_location"));
+                result.put("volume", rs.getInt("volume"));
                 result.put("slide_number", rs.getObject("slide_number"));
                 result.put("id", rs.getObject("id"));
                 results.add(result);
@@ -46,12 +44,12 @@ public class RetrieveTextRecords extends RetrieveRecords {
     }
 
     /***
-     * Selects all records from the Text table where the given slide number is
+     * Selects all records from the Sound table where the given slide number is
      * @param url The SQLite URL
      * @param slideNumber the number of the slide to select text from
      */
     public ArrayList<LinkedHashMap<String, Object>> selectAllFromSlide(String url, int slideNumber) {
-        String sql = "SELECT * FROM Text WHERE slide_number = " + slideNumber + ";";
+        String sql = "SELECT * FROM Sound WHERE slide_number = " + slideNumber + ";";
         ArrayList<LinkedHashMap<String, Object>> results = new ArrayList<>();
         try {
             Connection conn = DatabaseConnector.connect(url).conn;
@@ -60,12 +58,8 @@ public class RetrieveTextRecords extends RetrieveRecords {
             // loop through the result set
             while (rs.next()) {
                 LinkedHashMap<String, Object> result = new LinkedHashMap<>();
-                result.put("text", rs.getString("text"));
-                result.put("x", rs.getInt("x"));
-                result.put("y", rs.getInt("y"));
-                result.put("font", rs.getString("font"));
-                result.put("size", rs.getDouble("size"));
-                result.put("color", rs.getString("color"));
+                result.put("file_location", rs.getString("file_location"));
+                result.put("volume", rs.getInt("volume"));
                 result.put("slide_number", rs.getObject("slide_number"));
                 result.put("id", rs.getObject("id"));
                 results.add(result);

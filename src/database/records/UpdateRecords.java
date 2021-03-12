@@ -3,16 +3,14 @@ package database.records;
 import database.DatabaseConnector;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
-public class UpdateTextRecords {
-    public static void UpdateTextRecord(String url, LinkedHashMap<String, Object> information, int ID) {
-        String sql = "UPDATE Text\n SET ";
+public class UpdateRecords {
+    public static void UpdateRecord(String url, String table, LinkedHashMap<String, Object> information, int ID) {
+        String sql = "UPDATE " + table + "\n SET ";
         int i = 0;
         for (Map.Entry<String, Object> column : information.entrySet()) {
             if (i < information.size() - 1) {

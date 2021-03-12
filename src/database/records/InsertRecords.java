@@ -57,6 +57,7 @@ public class InsertRecords {
      * @param text The text to be stored
      * @param x The location of the text on the x axis
      * @param y The location of the text on the y axis
+     * @param slide_number The number of the slide that the text belongs to
      */
     public static void insertText(String url, String text, int x, int y, String font, double size, String color, int slide_number) {
         String sql = "INSERT INTO Text(text, x, y, font, size, color, slide_number) VALUES(?,?,?,?,?,?,?)";
@@ -76,13 +77,33 @@ public class InsertRecords {
         }
     }
 
+    /**
+     * Inserts sound data into the Sound table
+     * @param url The URL of the SQLite database
+     * @param file_location The location of the sound file
+     * @param volume The volume of the sound file
+     * @param slide_number The number of the slide that the sound belongs to
+     */
+    public static void insertSound(String url, String file_location, int volume, int slide_number) {
+        String sql = "INSERT INTO Sound(file_location, volume, slide_number) VALUES(?,?,?)";
+        try{
+            DatabaseConnector connector = DatabaseConnector.connect(url);
+            PreparedStatement pstmt = connector.conn.prepareStatement(sql);
+            pstmt.setString(1, file_location);
+            pstmt.setInt(2, volume);
+            pstmt.setInt(3, slide_number);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     /***
      * Inserts slide data into the Slide table
      * @param url The SQLite URL
      * @param slide_number The number representing which slide is the current slide
-     * @param text_id The id of the Text table attached to the slide
      */
-    public static void insertSlide(String url, int slide_number, int text_id) {
+    public static void insertSlide(String url, int slide_number) {
         String sql = "INSERT INTO Slide(slide_number) VALUES(?)";
         try {
             DatabaseConnector connector = DatabaseConnector.connect(url);
