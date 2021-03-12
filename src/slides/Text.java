@@ -35,6 +35,24 @@ public class Text {
     }
 
     /**
+     * Overload Text object for when we don't want to set ID
+     * @param content The text contained in the Text object
+     * @param x The text's x alignment
+     * @param y The text's y alignment
+     * @param size The text's size
+     * @param font The text's font
+     * @param color The text's color
+     */
+    public Text(String content, int x, int y, double size, String font, String color) {
+        this.content = content;
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.font = font;
+        this.color = color;
+    }
+
+    /**
      * Getter method for the text
      * @return The content of the Text object
      */

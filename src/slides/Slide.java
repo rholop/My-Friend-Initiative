@@ -49,6 +49,7 @@ public class Slide {
      * @param text The Text object to add to the slideshow
      */
     public void addText(Text text) {
+        text.setToDB(slideNumber);
         this.text.add(text);
     }
 
@@ -57,6 +58,23 @@ public class Slide {
      * @param sound The Sound object to add to the slideshow
      */
     public void addSound(Sound sound) {
+        sound.setToDB(slideNumber);
         this.sound.add(sound);
+    }
+
+    public void removeSound(int id) {
+        for (Sound s : sound) {
+            if (s.getID() == id) {
+                s.removeFromDB();
+                sound.remove(s);
+            }
+        }
+    }
+
+    public void removeAllSounds() {
+        for (Sound s : sound) {
+            s.removeFromDB();
+        }
+        sound = new ArrayList<>();
     }
 }

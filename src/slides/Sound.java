@@ -1,8 +1,8 @@
 package slides;
 
 import database.records.InsertRecords;
+import database.records.RemoveRecords;
 import database.records.RetrieveSoundRecords;
-import database.records.RetrieveTextRecords;
 import database.records.UpdateRecords;
 
 import java.util.ArrayList;
@@ -23,6 +23,16 @@ public class Sound {
         this.fileLocation = fileLocation;
         this.volume = volume;
         this.ID = ID;
+    }
+
+    /**
+     * Overload Sound constructor for when we don't want to set the ID
+     * @param fileLocation The file location of the sound
+     * @param volume The volume of the sound
+     */
+    public Sound(String fileLocation, int volume) {
+        this.fileLocation = fileLocation;
+        this.volume = volume;
     }
 
     /**
@@ -101,11 +111,22 @@ public class Sound {
         ID = (int)RetrieveSoundRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Sound", fields).get("id");
     }
 
+    public void removeFromDB() {
+        RemoveRecords.remove("jdbc:sqlite:C:/sqlite/db/name.db", ID, "Sound");
+    }
+
     /**
      * Displays the sound on the slide
      */
     public void display() {
         // print the values for now
-        System.out.print(fileLocation + ", " + volume);
+        System.out.print(fileLocation + ", " + volume + "\n");
+    }
+
+    public boolean equals(Sound sound) {
+        if (sound.ID == this.ID) {
+            return true;
+        }
+        return false;
     }
 }
