@@ -6,6 +6,7 @@ import database.records.RetrieveRecords;
 import database.records.RetrieveSlideRecords;
 import database.records.RetrieveTextRecords;
 import database.tables.TableCreator;
+import database.tables.TableDropper;
 
 import java.util.LinkedHashMap;
 
@@ -30,16 +31,16 @@ public class Main {
         LinkedHashMap<String, String> slideFields = new LinkedHashMap<>();
         slideFields.put("slide_number", "int");
         LinkedHashMap<String, String> foreignKeys = new LinkedHashMap<>();
-        foreignKeys.put("text_id", "Text(id)");
+        foreignKeys.put("slide_number", "Slide(slide_number)");
 
         // Create the tables
-        TableCreator.create(url, "Text", fields, null);
-        TableCreator.create(url, "Slide", slideFields, foreignKeys);
+        TableCreator.create(url, "Text", fields, foreignKeys);
+        TableCreator.create(url, "Slide", slideFields, null);
 
         // Add records to the tables
-        InsertRecords.insertText(url,"Hello World", 100, 400, "Times New Roman", 11.5, "#000000");
-        InsertRecords.insertText(url,"\u0989", 100, 400, "Times New Roman", 11.5, "#000000");
-        InsertRecords.insertText(url, "Hello World", 200, 200, "Helvetica", 12, "#66ccff");
+        InsertRecords.insertText(url,"Hello World", 100, 400, "Times New Roman", 11.5, "#000000", 1);
+        InsertRecords.insertText(url,"\u0989", 100, 400, "Times New Roman", 11.5, "#000000", 1);
+        InsertRecords.insertText(url, "Hello World", 200, 200, "Helvetica", 12, "#66ccff",1);
 
         InsertRecords.insertSlide(url, 1, 12);
 

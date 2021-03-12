@@ -15,10 +15,15 @@ public class Slide {
     }
 
     public void setup() {
+        this.text = Text.getFromDB(slideNumber);
         // set up the text, image, and sound objects
     }
 
     public void display() {
+        // print the values for now
+        for (Text t : text) {
+            t.display();
+        }
         // display the slide
     }
 

@@ -4,6 +4,8 @@ import database.DatabaseConnector;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /***
  * Retrieves records from the table and prints them
@@ -13,7 +15,7 @@ public abstract class RetrieveRecords {
      * Selects every record from the table and prints them
      * @param url The SQLite URL
      */
-    public abstract void selectAll(String url);
+    public abstract ArrayList<LinkedHashMap<String, Object>> selectAll(String url);
 
     /***
      * Static method that selects some of the fields in the table

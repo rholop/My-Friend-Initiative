@@ -58,8 +58,8 @@ public class InsertRecords {
      * @param x The location of the text on the x axis
      * @param y The location of the text on the y axis
      */
-    public static void insertText(String url, String text, int x, int y, String font, double size, String color) {
-        String sql = "INSERT INTO Text(text, x, y, font, size, color) VALUES(?,?,?,?,?,?)";
+    public static void insertText(String url, String text, int x, int y, String font, double size, String color, int slide_number) {
+        String sql = "INSERT INTO Text(text, x, y, font, size, color, slide_number) VALUES(?,?,?,?,?,?,?)";
         try{
             DatabaseConnector connector = DatabaseConnector.connect(url);
             PreparedStatement pstmt = connector.conn.prepareStatement(sql);
@@ -69,6 +69,7 @@ public class InsertRecords {
             pstmt.setString(4, font);
             pstmt.setDouble(5, size);
             pstmt.setString(6, color);
+            pstmt.setInt(7, slide_number);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -82,12 +83,11 @@ public class InsertRecords {
      * @param text_id The id of the Text table attached to the slide
      */
     public static void insertSlide(String url, int slide_number, int text_id) {
-        String sql = "INSERT INTO Slide(slide_number, text_id) VALUES(?,?)";
+        String sql = "INSERT INTO Slide(slide_number) VALUES(?)";
         try {
             DatabaseConnector connector = DatabaseConnector.connect(url);
             PreparedStatement pstmt = connector.conn.prepareStatement(sql);
             pstmt.setInt(1, slide_number);
-            pstmt.setInt(2, text_id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
