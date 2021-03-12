@@ -13,6 +13,7 @@ public class Text {
     private double size;
     private String font;
     private String color;
+    private int ID = -1;
 
     /**
      * Constructor for the Text class
@@ -23,13 +24,14 @@ public class Text {
      * @param font The text's font
      * @param color The text's color
      */
-    public Text(String content, int x, int y, double size, String font, String color) {
+    public Text(String content, int x, int y, double size, String font, String color, int ID) {
         this.content = content;
         this.x = x;
         this.y = y;
         this.size = size;
         this.font = font;
         this.color = color;
+        this.ID = ID;
     }
 
     /**
@@ -86,6 +88,11 @@ public class Text {
      */
     public void setContent(String content) {
         this.content = content;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("text", content);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -94,6 +101,11 @@ public class Text {
      */
     public void setX(int x) {
         this.x = x;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("x", x);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -102,6 +114,11 @@ public class Text {
      */
     public void setY(int y) {
         this.y = y;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("y", y);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -110,6 +127,11 @@ public class Text {
      */
     public void setSize(double size) {
         this.size = size;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("size", size);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -118,6 +140,11 @@ public class Text {
      */
     public void setFont(String font) {
         this.font = font;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("font", font);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -126,6 +153,11 @@ public class Text {
      */
     public void setColor(String color) {
         this.color = color;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("color", color);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -136,6 +168,12 @@ public class Text {
     public void moveText(int x, int y) {
         this.x = x;
         this.y = y;
+        LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+        update.put("x", x);
+        update.put("y", y);
+        if (ID != -1) {
+            UpdateTextRecords.UpdateTextRecord("jdbc:sqlite:C:/sqlite/db/name.db", update, ID);
+        }
     }
 
     /**
@@ -149,10 +187,20 @@ public class Text {
         ArrayList<Text> textObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> text : textData) {
             Text text1 = new Text((String)text.get("text"), (int)text.get("x"), (int)text.get("y"),
-                    (double)text.get("size"), (String)text.get("font"), (String)text.get("color"));
+                    (double)text.get("size"), (String)text.get("font"), (String)text.get("color"), (int)text.get("id"));
             textObjects.add(text1);
         }
         return textObjects;
+    }
+
+    /**
+     * Sets a record to the database with the object's variables
+     * @param slideNumber The slide number to connect the object to
+     */
+    public void setToDB(int slideNumber) {
+        InsertRecords.insertText("jdbc:sqlite:C:/sqlite/db/name.db", content, x, y, font, size, color, slideNumber);
+        String[] fields = {"id"};
+        ID = (int)RetrieveTextRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Text", fields).get("id");
     }
 
     /**

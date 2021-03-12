@@ -34,6 +34,7 @@ public class RetrieveTextRecords extends RetrieveRecords {
                 result.put("size", rs.getDouble("size"));
                 result.put("color", rs.getString("color"));
                 result.put("slide_number", rs.getObject("slide_number"));
+                result.put("id", rs.getObject("id"));
                 results.add(result);
             }
 
@@ -65,6 +66,7 @@ public class RetrieveTextRecords extends RetrieveRecords {
                 result.put("size", rs.getDouble("size"));
                 result.put("color", rs.getString("color"));
                 result.put("slide_number", rs.getObject("slide_number"));
+                result.put("id", rs.getObject("id"));
                 results.add(result);
             }
 

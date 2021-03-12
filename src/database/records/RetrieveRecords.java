@@ -23,7 +23,7 @@ public abstract class RetrieveRecords {
      * @param tableName The name of the table that you are selecting from
      * @param fields An array of strings containing the fields you want to select
      */
-    public static void selectSome(String url, String tableName, String[] fields) {
+    public static LinkedHashMap<String, Object> selectSome(String url, String tableName, String[] fields) {
         String sql = "SELECT ";
         int i = 0;
         for (String field : fields) {
@@ -36,6 +36,7 @@ public abstract class RetrieveRecords {
         }
         sql += "FROM " + tableName + ";";
 
+        LinkedHashMap<String, Object> results = new LinkedHashMap<>();
         try {
             Connection conn = DatabaseConnector.connect(url).conn;
             Statement stmt = conn.createStatement();
@@ -44,11 +45,13 @@ public abstract class RetrieveRecords {
             while (rs.next()) {
                 for (String field : fields) {
                     System.out.println(rs.getObject(field));
+                    results.put(field, rs.getObject(field));
                 }
             }
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
+        return results;
     }
 }
