@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import slides.Slide;
+import slides.Text;
 
 public class Primary extends Application{
 
@@ -19,6 +20,7 @@ public class Primary extends Application{
         //Scene scene = new Scene(label, 1200, 600);
 
         Slide slide = new Slide(1);
+        slide.addText(new Text("Hello World", 200, 200, 30, "Times New Roman", "#66ccff"));
         slide.setup();
         slide.display();
         Pane pane = slide.pane;
