@@ -19,6 +19,8 @@ public class Main {
         DatabaseCreator.create("C:/sqlite/db/", "name");
         DatabaseConnector.connect(url);
 
+        TableDropper.drop(url, "Text");
+
         // Create the tables
         LinkedHashMap<String, String> fields = new LinkedHashMap<>();
         fields.put("text", "text");
