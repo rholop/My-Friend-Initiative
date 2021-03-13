@@ -60,6 +60,8 @@ public class Main {
         InsertRecords.insertText(url,"\u0989", 100, 400, "Times New Roman", 11.5, "#000000", 1);
         InsertRecords.insertText(url, "Hello World", 200, 200, "Helvetica", 12, "#66ccff",1);
 
+        InsertRecords.insertImage(url, "location", 30, 30, 20, 20, 1);
+
         InsertRecords.insertSlide(url, 1);
 
         // Retrieve all of the values from the tables

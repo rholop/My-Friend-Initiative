@@ -108,7 +108,7 @@ public class InsertRecords {
      * @param y The y alignment of the image
      */
     public static void insertImage(String url, String file_location, double height, double width, double x, double y, int slide_number) {
-        String sql = "INSERT INTO Image(file_location, height, width, x, y) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Image(file_location, height, width, x, y, slide_number) VALUES(?,?,?,?,?,?)";
 
         try{
             DatabaseConnector connector = DatabaseConnector.connect(url);
