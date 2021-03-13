@@ -42,11 +42,21 @@ public class Primary extends Application{
                 testButton.setText("You pressed the button");
             }
         });
-
         group.getChildren().add(testButton);
         grid.add(testButton, 0, 0);
 
+        Button testButton2 = new Button("test2");
+        testButton2.setOnAction(new EventHandler<ActionEvent> (){
+            @Override
+            public void handle(ActionEvent event){
+                testButton2.setText("You pressed the second button");
+            }
+        });
+        group.getChildren().add(testButton2);
+        grid.add(testButton2, 1, 0);
+
         /////////////////////////////////////////////////////
+        group.getChildren().add(pane);
 
         Scene scene = new Scene(group, 1200, 600);
 

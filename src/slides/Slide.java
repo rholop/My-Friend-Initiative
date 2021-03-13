@@ -26,7 +26,7 @@ public class Slide {
         text = new ArrayList<>();
         sound = new ArrayList<>();
         image = new ArrayList<>();
-        pane = new StackPane();
+        pane = new Pane();
         pane.setPrefWidth(1200);
         pane.setPrefHeight(600);
     }
