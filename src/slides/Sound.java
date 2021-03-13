@@ -4,7 +4,13 @@ import database.records.InsertRecords;
 import database.records.RemoveRecords;
 import database.records.RetrieveSoundRecords;
 import database.records.UpdateRecords;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -118,9 +124,14 @@ public class Sound {
     /**
      * Displays the sound on the slide
      */
-    public void display() {
+    public void play() {
         // print the values for now
-        System.out.print(fileLocation + ", " + volume + "\n");
+        String directory = System.getProperty("user.dir");
+        String location = directory + "\\src\\assets\\sounds\\" + fileLocation;
+        URI file = new File(location).toURI();
+        Media media = new Media(file.toString());
+        AudioClip mediaPlayer = new AudioClip(media.getSource());
+        mediaPlayer.play();
     }
 
     public boolean equals(Sound sound) {

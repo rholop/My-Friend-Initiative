@@ -3,6 +3,7 @@ package slides;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Slide {
     ArrayList<Image> image;
     int slideNumber;
     public Pane pane;
+    private MediaPlayer player;
 
     /**
      * Constructor for the Slide object
@@ -50,7 +52,7 @@ public class Slide {
             t.display(pane);
         }
         for (Sound s : sound) {
-            s.display();
+            s.play();
         }
         for (Image i : image) {
             i.display(pane);

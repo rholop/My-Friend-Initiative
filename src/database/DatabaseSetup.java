@@ -2,7 +2,6 @@ package database;
 
 import database.tables.TableCreator;
 import database.tables.TableDropper;
-import javafx.scene.control.Tab;
 
 import java.util.LinkedHashMap;
 
@@ -18,6 +17,7 @@ public class DatabaseSetup {
 
         TableDropper.drop(url, "Image");
         TableDropper.drop(url, "Text");
+        TableDropper.drop(url, "Sound");
 
         // Create the tables
         LinkedHashMap<String, String> fields = new LinkedHashMap<>();

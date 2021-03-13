@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import slides.Image;
+import slides.Sound;
 import slides.Slide;
 import slides.Text;
 import javafx.scene.Group;
@@ -30,8 +31,10 @@ public class Primary extends Application{
         Slide slide = new Slide(1);
         slide.addText(new Text("Hello World", 100, 200, 30, "Times New Roman", "#66ccff"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
+        slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
         slide.setup();
         slide.display();
+        stage.show();
         Pane pane = slide.pane;
         GridPane grid = new GridPane();
         group.getChildren().add(grid);
