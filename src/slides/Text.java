@@ -1,6 +1,11 @@
 package slides;
 
 import database.records.*;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -230,9 +235,19 @@ public class Text {
 
     /**
      * Displays the text on the slide
+     * @param pane The pane to display the text on
      */
-    public void display() {
+    public void display(Pane pane) {
         // print the values for now
         System.out.print(content + ", " + x + ", " + y + ", " + size + ", " + font + ", " + color + "\n");
+        javafx.scene.text.Text theText = new javafx.scene.text.Text();
+        theText.setText(content);
+        theText.setTranslateX(x);
+        theText.setTranslateY(y);
+        Font theFont = new Font(font, size);
+        theText.setFont(theFont);
+        Color thisColor = Color.web(color);
+        theText.setFill(thisColor);
+        pane.getChildren().add(theText);
     }
 }

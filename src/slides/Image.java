@@ -1,6 +1,8 @@
 package slides;
 
 import database.records.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -183,14 +185,15 @@ public class Image {
      */
     public static ArrayList<Image> getFromDB(int slideNumber) {
         ArrayList<LinkedHashMap<String, Object>> imageData =
-                new RetrieveTextRecords().selectAllFromSlide("jdbc:sqlite:C:/sqlite/db/name.db", slideNumber);
-        ArrayList<Image> textObjects = new ArrayList<>();
+                new RetrieveImageRecords().selectAllFromSlide("jdbc:sqlite:C:/sqlite/db/name.db", slideNumber);
+        ArrayList<Image> imageObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> image : imageData) {
+            System.out.println(imageData);
             Image image1 = new Image((String)image.get("file_location"), (double)image.get("height"),
                     (double)image.get("width"), (double)image.get("x"), (double)image.get("y"), (int)image.get("id"));
-            textObjects.add(image1);
+            imageObjects.add(image1);
         }
-        return textObjects;
+        return imageObjects;
     }
 
     /**
@@ -212,8 +215,9 @@ public class Image {
 
     /**
      * Displays the image on the slide
+     * @param pane The pane to put the image on
      */
-    public void display() {
+    public void display(Pane pane) {
         // print the values for now
         System.out.print(fileLocation + ", " + height + ", " + width + ", " + x + ", " + y + "\n");
     }

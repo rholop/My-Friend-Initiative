@@ -2,12 +2,10 @@ package slides;
 
 public class Test {
     public static void main(String[] args) {
-        Slide slide = new Slide(2);
+        Slide slide = new Slide(1);
         slide.setup();
-        Sound sound = new Sound("assets/sounds/sound.mp3", 10);
-        slide.addSound(sound);
-        Sound sound1 = new Sound("owo", 1);
-        slide.addSound(sound1);
+        //Text text = new Text("Hello", 100, 200, 11, "Times New Roman", "#66ccff");
+        //slide.addText(text);
         slide.setup();
         slide.display();
     }
