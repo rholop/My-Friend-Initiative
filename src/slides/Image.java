@@ -3,9 +3,10 @@ package slides;
 import database.records.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -215,6 +216,37 @@ public class Image {
     }
 
     /**
+     * Moves a file in the given location to the assets folder
+     * @param originalFileLocation The location of the file
+     * @param fileName The name of the file
+     */
+    public static void moveToAssets(String originalFileLocation, String fileName) {
+        try {
+            String assetLocation = System.getProperty("user.dir") + "\\src\\assets\\images\\" + fileName;
+            Files.move(Paths.get(originalFileLocation), Paths.get(assetLocation));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Moves the given file to the assets folder and creates an Image object
+     * @param originalFileLocation The location of the file
+     * @param fileName The name of the file
+     * @param height The height of the image
+     * @param width The width of the image
+     * @param x The x alignment of the image
+     * @param y The y alignment of the image
+     * @param slideNumber The slide to link the image to
+     * @return An image object
+     */
+    public static Image moveAndCreateImageObject(String originalFileLocation, String fileName, double height,
+                                                 double width, double x, double y, int slideNumber) {
+        moveToAssets(originalFileLocation, fileName);
+        return new Image(fileName, height, width, x, y);
+    }
+
+    /**
      * Displays the image on the slide
      * @param pane The pane to put the image on
      */
@@ -230,6 +262,5 @@ public class Image {
         view.setTranslateX(x);
         view.setTranslateY(y);
         pane.getChildren().add(view);
-        System.out.println(location);
     }
 }
