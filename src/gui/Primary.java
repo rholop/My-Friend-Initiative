@@ -26,7 +26,6 @@ public class Primary extends Application{
 
         DatabaseSetup.setup();
         Slide slide = new Slide(1);
-        slide.addText(new Text("Hello World", 200, 200, 30, "Times New Roman", "#66ccff"));
         slide.setup();
         slide.display();
         Pane pane = slide.pane;
