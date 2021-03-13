@@ -4,8 +4,10 @@ import database.DatabaseSetup;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -36,25 +38,27 @@ public class Primary extends Application{
 
         /////////////////////////////////////////////
 
-        Button testButton = new Button("test");
-        testButton.setOnAction(new EventHandler<ActionEvent> (){
+        Button imageButton = new Button("Add Image");
+        imageButton.setOnAction(new EventHandler<ActionEvent> (){
             @Override
             public void handle(ActionEvent event){
-                testButton.setText("You pressed the button");
+                imageButton.setText("You pressed the image button");
             }
         });
-        group.getChildren().add(testButton);
-        grid.add(testButton, 0, 0);
+        group.getChildren().add(imageButton);
+        grid.add(imageButton, 0, 0);
+        grid.setMargin(imageButton, new Insets(5,5,5,5));
 
-        Button testButton2 = new Button("test2");
-        testButton2.setOnAction(new EventHandler<ActionEvent> (){
+        Button soundButton = new Button("Add Sound Effect");
+        soundButton.setOnAction(new EventHandler<ActionEvent> (){
             @Override
             public void handle(ActionEvent event){
-                testButton2.setText("You pressed the second button");
+                soundButton.setText("You pressed the sound button");
             }
         });
-        group.getChildren().add(testButton2);
-        grid.add(testButton2, 1, 0);
+        group.getChildren().add(soundButton);
+        grid.add(soundButton, 0, 1);
+        grid.setMargin(soundButton, new Insets(5,5,5,5));
 
         /////////////////////////////////////////////////////
         group.getChildren().add(pane);
