@@ -15,7 +15,7 @@ public class Slide {
     ArrayList<Sound> sound;
     ArrayList<Image> image;
     int slideNumber;
-    Pane pane;
+    public Pane pane;
 
     /**
      * Constructor for the Slide object
