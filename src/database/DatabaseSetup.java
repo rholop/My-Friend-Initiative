@@ -1,6 +1,8 @@
 package database;
 
 import database.tables.TableCreator;
+import database.tables.TableDropper;
+import javafx.scene.control.Tab;
 
 import java.util.LinkedHashMap;
 
@@ -13,6 +15,9 @@ public class DatabaseSetup {
 
         DatabaseCreator.create("C:/sqlite/db/", "name");
         DatabaseConnector.connect(url);
+
+        TableDropper.drop(url, "Image");
+        TableDropper.drop(url, "Text");
 
         // Create the tables
         LinkedHashMap<String, String> fields = new LinkedHashMap<>();

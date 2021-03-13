@@ -20,7 +20,7 @@ public class RetrieveImageRecords extends RetrieveRecords {
      */
     @Override
     public ArrayList<LinkedHashMap<String, Object>> selectAll(String url) {
-        String sql = "SELECT * FROM Sound";
+        String sql = "SELECT * FROM Image";
         ArrayList<LinkedHashMap<String, Object>> results = new ArrayList<>();
 
         try {
@@ -52,7 +52,7 @@ public class RetrieveImageRecords extends RetrieveRecords {
      * @param slideNumber the number of the slide to select image from
      */
     public ArrayList<LinkedHashMap<String, Object>> selectAllFromSlide(String url, int slideNumber) {
-        String sql = "SELECT * FROM Sound WHERE slide_number = " + slideNumber + ";";
+        String sql = "SELECT * FROM Image WHERE slide_number = " + slideNumber + ";";
         ArrayList<LinkedHashMap<String, Object>> results = new ArrayList<>();
         try {
             Connection conn = DatabaseConnector.connect(url).conn;

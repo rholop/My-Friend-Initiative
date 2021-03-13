@@ -1,9 +1,11 @@
 package slides;
 
 import database.records.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -188,7 +190,6 @@ public class Image {
                 new RetrieveImageRecords().selectAllFromSlide("jdbc:sqlite:C:/sqlite/db/name.db", slideNumber);
         ArrayList<Image> imageObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> image : imageData) {
-            System.out.println(imageData);
             Image image1 = new Image((String)image.get("file_location"), (double)image.get("height"),
                     (double)image.get("width"), (double)image.get("x"), (double)image.get("y"), (int)image.get("id"));
             imageObjects.add(image1);
@@ -203,7 +204,7 @@ public class Image {
     public void setToDB(int slideNumber) {
         InsertRecords.insertImage("jdbc:sqlite:C:/sqlite/db/name.db", fileLocation, height, width, x, y, slideNumber);
         String[] fields = {"id"};
-        ID = (int) RetrieveSoundRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Image", fields).get("id");
+        ID = (int) RetrieveImageRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Image", fields).get("id");
     }
 
     /**
@@ -220,5 +221,15 @@ public class Image {
     public void display(Pane pane) {
         // print the values for now
         System.out.print(fileLocation + ", " + height + ", " + width + ", " + x + ", " + y + "\n");
+        String directory = System.getProperty("user.dir");
+        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
+        javafx.scene.image.Image img = new javafx.scene.image.Image(location);
+        ImageView view = new ImageView(img);
+        view.setFitHeight(height);
+        view.setFitWidth(width);
+        view.setTranslateX(x);
+        view.setTranslateY(y);
+        pane.getChildren().add(view);
+        System.out.println(location);
     }
 }
