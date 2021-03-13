@@ -1,5 +1,6 @@
 package gui;
 
+import database.DatabaseSetup;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +20,7 @@ public class Primary extends Application{
         Label label = new Label("This is a test label!");
         //Scene scene = new Scene(label, 1200, 600);
 
+        DatabaseSetup.setup();
         Slide slide = new Slide(1);
         slide.addText(new Text("Hello World", 200, 200, 30, "Times New Roman", "#66ccff"));
         slide.setup();
