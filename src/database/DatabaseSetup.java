@@ -2,17 +2,19 @@ package database;
 
 import database.tables.TableCreator;
 import database.tables.TableDropper;
-
+import config.Config;
 import java.util.LinkedHashMap;
 
 public class DatabaseSetup {
     //TODO: Create all of the tables in the database
     public static void setup() {
-        String path = "C:/sqlite/db/";
-        String database = "name";
-        String url = "jdbc:sqlite:" + path + database + ".db";
+        Config config = new Config();
+        String path = System.getProperty("user.dir") + "\\db\\";
+        String database = "name.db";
+        String url = "jdbc:sqlite:" + path + database;
+        config.setConfig(path, url);
 
-        DatabaseCreator.create("C:/sqlite/db/", "name");
+        DatabaseCreator.create(path, "name");
         DatabaseConnector.connect(url);
 
         TableDropper.drop(url, "Image");

@@ -1,5 +1,6 @@
 package slides;
 
+import config.Config;
 import database.records.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -16,6 +17,7 @@ public class Text {
     private String font;
     private String color;
     private int ID;
+    private Config config = new Config();
 
     /**
      * Constructor for the Text class
@@ -112,7 +114,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("text", content);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -125,7 +127,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("x", x);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -138,7 +140,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("y", y);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -151,7 +153,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("size", size);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -164,7 +166,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("font", font);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -177,7 +179,7 @@ public class Text {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("color", color);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -193,7 +195,7 @@ public class Text {
         update.put("x", x);
         update.put("y", y);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Text", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Text", update, ID);
         }
     }
 
@@ -203,8 +205,9 @@ public class Text {
      * @return An ArrayList of Text objects
      */
     public static ArrayList<Text> getFromDB(int slideNumber) {
+        Config config = new Config();
         ArrayList<LinkedHashMap<String, Object>> textData =
-                new RetrieveTextRecords().selectAllFromSlide("jdbc:sqlite:C:/sqlite/db/name.db", slideNumber);
+                new RetrieveTextRecords().selectAllFromSlide(config.getURL(), slideNumber);
         ArrayList<Text> textObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> text : textData) {
             Text text1 = new Text((String)text.get("text"), (int)text.get("x"), (int)text.get("y"),
@@ -219,16 +222,16 @@ public class Text {
      * @param slideNumber The slide number to connect the object to
      */
     public void setToDB(int slideNumber) {
-        InsertRecords.insertText("jdbc:sqlite:C:/sqlite/db/name.db", content, x, y, font, size, color, slideNumber);
+        InsertRecords.insertText(config.getURL(), content, x, y, font, size, color, slideNumber);
         String[] fields = {"id"};
-        ID = (int)RetrieveTextRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Text", fields).get("id");
+        ID = (int)RetrieveTextRecords.selectSome(config.getURL(), "Text", fields).get("id");
     }
 
     /**
      * Removes the text from the database
      */
     public void removeFromDB() {
-        RemoveRecords.remove("jdbc:sqlite:C:/sqlite/db/name.db", ID, "Text");
+        RemoveRecords.remove(config.getURL(), ID, "Text");
     }
 
     /**

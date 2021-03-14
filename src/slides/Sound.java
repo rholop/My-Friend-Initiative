@@ -1,13 +1,12 @@
 package slides;
 
+import config.Config;
 import database.records.InsertRecords;
 import database.records.RemoveRecords;
 import database.records.RetrieveSoundRecords;
 import database.records.UpdateRecords;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URI;
@@ -18,6 +17,7 @@ public class Sound {
     private String fileLocation;
     private int volume;
     private int ID;
+    private Config config = new Config();
 
     /**
      * Constructor for the sound class.
@@ -74,7 +74,7 @@ public class Sound {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("file_location", fileLocation);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Sound", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Sound", update, ID);
         }
     }
 
@@ -87,7 +87,7 @@ public class Sound {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("volume", volume);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Sound", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Sound", update, ID);
         }
     }
 
@@ -97,8 +97,9 @@ public class Sound {
      * @return An ArrayList of Sound objects
      */
     public static ArrayList<Sound> getFromDB(int slideNumber) {
+        Config config = new Config();
         ArrayList<LinkedHashMap<String, Object>> soundData =
-                new RetrieveSoundRecords().selectAllFromSlide("jdbc:sqlite:C:/sqlite/db/name.db", slideNumber);
+                new RetrieveSoundRecords().selectAllFromSlide(config.getURL(), slideNumber);
         ArrayList<Sound> soundObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> sound : soundData) {
             Sound sound1 = new Sound((String)sound.get("file_location"), (int)sound.get("volume"), (int)sound.get("id"));
@@ -112,13 +113,13 @@ public class Sound {
      * @param slideNumber The slide number to connect the object to
      */
     public void setToDB(int slideNumber) {
-        InsertRecords.insertSound("jdbc:sqlite:C:/sqlite/db/name.db", fileLocation, volume, slideNumber);
+        InsertRecords.insertSound(config.getURL(), fileLocation, volume, slideNumber);
         String[] fields = {"id"};
-        ID = (int)RetrieveSoundRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Sound", fields).get("id");
+        ID = (int)RetrieveSoundRecords.selectSome(config.getURL(), "Sound", fields).get("id");
     }
 
     public void removeFromDB() {
-        RemoveRecords.remove("jdbc:sqlite:C:/sqlite/db/name.db", ID, "Sound");
+        RemoveRecords.remove(config.getURL(), ID, "Sound");
     }
 
     /**

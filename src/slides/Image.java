@@ -1,5 +1,6 @@
 package slides;
 
+import config.Config;
 import database.records.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -17,6 +18,7 @@ public class Image {
     private double x;
     private double y;
     private int ID;
+    private Config config = new Config();
 
     /**
      * Constructor class for Image objects
@@ -109,7 +111,7 @@ public class Image {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("file_location", fileLocation);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Image", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Image", update, ID);
         }
     }
 
@@ -122,7 +124,7 @@ public class Image {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("height", height);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Image", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Image", update, ID);
         }
     }
 
@@ -135,7 +137,7 @@ public class Image {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("width", width);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Image", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Image", update, ID);
         }
     }
 
@@ -148,7 +150,7 @@ public class Image {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("x", x);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Image", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Image", update, ID);
         }
     }
 
@@ -161,7 +163,7 @@ public class Image {
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("y", y);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Image", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Image", update, ID);
         }
     }
 
@@ -177,7 +179,7 @@ public class Image {
         update.put("x", x);
         update.put("y", y);
         if (ID != -1) {
-            UpdateRecords.UpdateRecord("jdbc:sqlite:C:/sqlite/db/name.db", "Image", update, ID);
+            UpdateRecords.UpdateRecord(config.getURL(), "Image", update, ID);
         }
     }
 
@@ -187,8 +189,9 @@ public class Image {
      * @return An ArrayList of Image objects
      */
     public static ArrayList<Image> getFromDB(int slideNumber) {
+        Config config = new Config();
         ArrayList<LinkedHashMap<String, Object>> imageData =
-                new RetrieveImageRecords().selectAllFromSlide("jdbc:sqlite:C:/sqlite/db/name.db", slideNumber);
+                new RetrieveImageRecords().selectAllFromSlide(config.getURL(), slideNumber);
         ArrayList<Image> imageObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> image : imageData) {
             Image image1 = new Image((String)image.get("file_location"), (double)image.get("height"),
@@ -203,7 +206,7 @@ public class Image {
      * @param slideNumber The slide number to connect the object to
      */
     public void setToDB(int slideNumber) {
-        InsertRecords.insertImage("jdbc:sqlite:C:/sqlite/db/name.db", fileLocation, height, width, x, y, slideNumber);
+        InsertRecords.insertImage(config.getURL(), fileLocation, height, width, x, y, slideNumber);
         String[] fields = {"id"};
         ID = (int) RetrieveImageRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Image", fields).get("id");
     }
@@ -212,7 +215,7 @@ public class Image {
      * Removes the image from the database
      */
     public void removeFromDB() {
-        RemoveRecords.remove("jdbc:sqlite:C:/sqlite/db/name.db", ID, "Image");
+        RemoveRecords.remove(config.getURL(), ID, "Image");
     }
 
     /**
