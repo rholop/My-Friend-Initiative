@@ -36,6 +36,7 @@ public class Primary extends Application{
         slide.display();
         stage.show();
         Pane pane = slide.pane;
+        pane.setTranslateX(100);
         GridPane grid = new GridPane();
         group.getChildren().add(grid);
 
