@@ -130,12 +130,26 @@ public class InsertRecords {
      * @param url The SQLite URL
      * @param slide_number The number representing which slide is the current slide
      */
-    public static void insertSlide(String url, int slide_number) {
-        String sql = "INSERT INTO Slide(slide_number) VALUES(?)";
+    public static void insertSlide(String url, int slide_number, int slideshow_id) {
+        String sql = "INSERT INTO Slide(slide_number, slideshow_id) VALUES(?, ?)";
         try {
             DatabaseConnector connector = DatabaseConnector.connect(url);
             PreparedStatement pstmt = connector.conn.prepareStatement(sql);
             pstmt.setInt(1, slide_number);
+            pstmt.setInt(2, slideshow_id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertSlideshow(String url, String name, int amount_of_slides) {
+        String sql = "INSERT INTO Slideshow(name, amount_of_slides) VALUES(?,?)";
+        try {
+            DatabaseConnector connector = DatabaseConnector.connect(url);
+            PreparedStatement pstmt = connector.conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setInt(2, amount_of_slides);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

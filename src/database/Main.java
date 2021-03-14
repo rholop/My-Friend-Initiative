@@ -64,7 +64,8 @@ public class Main {
 
         InsertRecords.insertImage(url, "location", 30, 30, 20, 20, 1);
 
-        InsertRecords.insertSlide(url, 1);
+        InsertRecords.insertSlideshow(url, "test", 13);
+        InsertRecords.insertSlide(url, 1, 1);
 
         // Retrieve all of the values from the tables
         new RetrieveTextRecords().selectAll(url);

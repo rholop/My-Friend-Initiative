@@ -17,10 +17,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
-import slides.Image;
-import slides.Sound;
-import slides.Slide;
-import slides.Text;
+import pdf.PDFConverter;
+import slides.*;
 import javafx.scene.Group;
 
 import java.util.ArrayList;
@@ -37,10 +35,19 @@ public class Primary extends Application{
         DatabaseSetup.setup();
         Slide slide = new Slide(1);
         slide.addText(new Text("Hello World", 100, 200, 30, "Times New Roman", "#66ccff"));
+        slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
         slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
-        slide.setup();
-        slide.display();
+
+        Slide slide1 = new Slide(2);
+        slide1.addText(new Text("Hello Again", 200, 300, 20, "Comic Sans", "#000000"));
+
+        SlideShow slideshow = new SlideShow(1, "Test");
+        slideshow.setup();
+        slideshow.addSlide(slide);
+        slideshow.addSlide(slide1);
+        slideshow.display();
+
         stage.show();
         Pane pane = slide.pane;
         pane.setTranslateX(100);
@@ -53,8 +60,6 @@ public class Primary extends Application{
             view.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    //view.setTranslateX(mouseEvent.getX());
-                    //view.setTranslateY(mouseEvent.getY());
                     view.setX(mouseEvent.getX() - (view.getFitWidth() / 2));
                     view.setY(mouseEvent.getY() - (view.getFitHeight() / 2));
                 }
@@ -62,7 +67,8 @@ public class Primary extends Application{
             view.setOnMouseReleased(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    image.move((int) mouseEvent.getX(), (int) mouseEvent.getY());
+                    image.move((int)mouseEvent.getX(), (int)mouseEvent.getY());
+                    System.out.println(mouseEvent.getX() + ", " + mouseEvent.getY());
                 }
             });
         }
@@ -101,6 +107,9 @@ public class Primary extends Application{
         imageButton.setOnAction(new EventHandler<ActionEvent> (){
             @Override
             public void handle(ActionEvent event){
+                slideshow.goToNext();
+                group.getChildren().remove(pane);
+                group.getChildren().add(slide1.pane);
                 imageButton.setText("You pressed the image button");
             }
         });

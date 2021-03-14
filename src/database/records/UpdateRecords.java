@@ -20,7 +20,7 @@ public class UpdateRecords {
                 sql += column.getKey() + " = " + column.getValue() + "\n";
             }
         }
-        sql += "WHERE slide_number = " + ID + ";";
+        sql += "WHERE id = " + ID + ";";
         try {
             Connection conn = DatabaseConnector.connect(url).conn;
             Statement stmt = conn.createStatement();

@@ -1,5 +1,9 @@
 package slides;
 
+import config.Config;
+import database.records.InsertRecords;
+import database.records.RetrieveSlideRecords;
+import database.records.RetrieveTextRecords;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -7,6 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Class to represent slides
@@ -16,11 +21,28 @@ public class Slide {
     ArrayList<Sound> sound;
     ArrayList<Image> image;
     int slideNumber;
+    int ID;
     public Pane pane;
     private MediaPlayer player;
+    private Config config = new Config();
 
     /**
      * Constructor for the Slide object
+     * @param slideNumber The position of the slide in the slideshow
+     */
+    public Slide(int slideNumber, int ID) {
+        this.slideNumber = slideNumber;
+        this.ID = ID;
+        text = new ArrayList<>();
+        sound = new ArrayList<>();
+        image = new ArrayList<>();
+        pane = new Pane();
+        pane.setPrefWidth(1200);
+        pane.setPrefHeight(600);
+    }
+
+    /**
+     * Overload Slide object for when we don't want to set ID
      * @param slideNumber The position of the slide in the slideshow
      */
     public Slide(int slideNumber) {
@@ -95,6 +117,10 @@ public class Slide {
         return image;
     }
 
+    /**
+     * Getter method for the text on the slide
+     * @return The text on the slide
+     */
     public ArrayList<Text> getText() {
         return text;
     }
@@ -110,6 +136,28 @@ public class Slide {
                 sound.remove(s);
             }
         }
+    }
+
+    /**
+     * Sets a record to the database with the object's variables
+     * @param slideshow_id The slideshow to connect the object to
+     */
+    public void setToDB(int slideshow_id) {
+        InsertRecords.insertSlide(config.getURL(), ID, slideshow_id);
+        String[] fields = {"id"};
+        ID = (int) RetrieveSlideRecords.selectSome(config.getURL(), "Text", fields).get("id");
+    }
+
+    public static ArrayList<Slide> getFromDB(int slideshow_id) {
+        Config config = new Config();
+        ArrayList<LinkedHashMap<String, Object>> slideData =
+                new RetrieveSlideRecords().selectAllFromSlideshow(config.getURL(), slideshow_id);
+        ArrayList<Slide> slideObjects = new ArrayList<>();
+        for (LinkedHashMap<String ,Object> slide : slideData) {
+            Slide slide1 = new Slide((int) slide.get("slide_number"));
+            slide1.setup();
+        }
+        return slideObjects;
     }
 
     /**

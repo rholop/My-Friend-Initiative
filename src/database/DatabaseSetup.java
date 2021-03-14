@@ -3,6 +3,7 @@ package database;
 import database.tables.TableCreator;
 import database.tables.TableDropper;
 import config.Config;
+
 import java.util.LinkedHashMap;
 
 public class DatabaseSetup {
@@ -17,6 +18,7 @@ public class DatabaseSetup {
         DatabaseCreator.create(path, "name");
         DatabaseConnector.connect(url);
 
+        TableDropper.drop(url, "Slide");
         TableDropper.drop(url, "Image");
         TableDropper.drop(url, "Text");
         TableDropper.drop(url, "Sound");
@@ -44,17 +46,24 @@ public class DatabaseSetup {
         LinkedHashMap<String, String> slideFields = new LinkedHashMap<>();
         slideFields.put("slide_number", "int");
 
+        LinkedHashMap<String, String> slideshowFields = new LinkedHashMap<>();
+        slideshowFields.put("amount_of_slides", "int");
+        slideshowFields.put("name", "text");
+
         LinkedHashMap<String, String> textForeignKeys = new LinkedHashMap<>();
         LinkedHashMap<String, String> imageForeignKeys = new LinkedHashMap<>();
         LinkedHashMap<String, String> soundForeignKeys = new LinkedHashMap<>();
+        LinkedHashMap<String, String> slideForeignKeys = new LinkedHashMap<>();
         textForeignKeys.put("slide_number", "Slide(slide_number)");
         imageForeignKeys.put("slide_number", "Slide(slide_number)");
         soundForeignKeys.put("slide_number", "Slide(slide_number)");
+        slideForeignKeys.put("slideshow_id", "Slideshow(id)");
 
         // Create the tables
         TableCreator.create(url, "Text", fields, textForeignKeys);
         TableCreator.create(url, "Image", imageFields, imageForeignKeys);
         TableCreator.create(url, "Sound", soundFields, soundForeignKeys);
-        TableCreator.create(url, "Slide", slideFields, null);
+        TableCreator.create(url, "Slideshow", slideshowFields, null);
+        TableCreator.create(url, "Slide", slideFields, slideForeignKeys);
     }
 }
