@@ -1,5 +1,7 @@
 package pdf;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -7,16 +9,18 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-//import com.itextpdf.*;
 import com.itextpdf.layout.Document;
+import slides.Slide;
+import slides.SlideShow;
 
 public class PDFConverter {
     //TODO: Convert database files of selected slideshow into a PDF
@@ -35,19 +39,31 @@ public class PDFConverter {
         }
         System.out.println(a);
     }
-    public static void saveToPDF(Pane[] panes) {
+    public static void saveToPDF(SlideShow slideshow) {
         ArrayList<Image> images = new ArrayList<>();
         String location = System.getProperty("user.dir");
         File file = new File(location + "\\temp\\");
         try {
             file.createNewFile();
-            File[] dirListing = file.listFiles();
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(location));
+            File pdfFile = new File(location + "\\temp\\stuff.pdf");
+            pdfFile.mkdir();
+            pdfFile.createNewFile();
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(location + "\\temp\\stuff.pdf"));
             Document doc = new Document(pdfDoc, new PageSize(1200, 600));
             int i = 0;
-            for (Pane pane : panes) {
-                convertToImage(pane, location + "\\temp\\" + i + ".png");
+            ArrayList<Slide> slides = slideshow.getSlides();
+            ArrayList<Pane> panes = new ArrayList<>();
+            for (Slide slide : slides) {
+                panes.add(slide.pane);
             }
+            for (Pane pane : panes) {
+                PdfWriter writer = new PdfWriter(location + "\\temp\\" + i + ".png");
+                String imageFile = location + "\\temp\\" + i + ".png";
+                ImageData data = ImageDataFactory.create(imageFile);
+                com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(data);
+                doc.add(image);
+            }
+            doc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

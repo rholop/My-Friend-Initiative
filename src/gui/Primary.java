@@ -21,12 +21,6 @@ import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
 import java.util.ArrayList;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.paint.Color;
-import javafx.scene.control.Slider;
-
 
 public class Primary extends Application{
 
@@ -51,11 +45,14 @@ public class Primary extends Application{
         slideshow.setup();
         slideshow.addSlide(slide);
         slideshow.addSlide(slide1);
+        slide.setup();
         slideshow.display();
+        PDFConverter.saveToPDF(slideshow);
 
         stage.show();
         Pane pane = slide.pane;
-        pane.setTranslateX(100);
+        pane.setTranslateX(150);
+        pane.setTranslateY(-100);
         GridPane grid = new GridPane();
         group.getChildren().add(grid);
 
@@ -74,8 +71,8 @@ public class Primary extends Application{
             view.setOnMouseReleased(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    image.move((int)mouseEvent.getX(), (int)mouseEvent.getY());
-                    System.out.println(mouseEvent.getX() + ", " + mouseEvent.getY());
+                    image.move((int)mouseEvent.getX() + 150, (int)mouseEvent.getY());
+                    System.out.println(image.getX() + ", " + image.getY());
                 }
             });
         }
@@ -171,7 +168,7 @@ public class Primary extends Application{
         /////////////////////////////////////////////////////
         group.getChildren().add(pane);
 
-        Scene scene = new Scene(group, 1200, 600);
+        Scene scene = new Scene(group, 1350, 600);
 
         //stage = new Stage();
         stage.setScene(scene);

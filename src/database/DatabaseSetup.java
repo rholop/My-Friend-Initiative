@@ -18,6 +18,7 @@ public class DatabaseSetup {
         DatabaseCreator.create(path, "name");
         DatabaseConnector.connect(url);
 
+        TableDropper.drop(url, "Slideshow");
         TableDropper.drop(url, "Slide");
         TableDropper.drop(url, "Image");
         TableDropper.drop(url, "Text");

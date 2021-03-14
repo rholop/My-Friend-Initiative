@@ -46,7 +46,7 @@ public class SlideShow {
                 s.stop();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // Do nothing
         }
         slides.get(currentSlide - 1).display();
     }
@@ -54,6 +54,10 @@ public class SlideShow {
     public void addSlide(Slide slide) {
         slide.setToDB(ID);
         this.slides.add(slide);
+    }
+
+    public ArrayList<Slide> getSlides() {
+        return slides;
     }
 
     public void goToNext() {
