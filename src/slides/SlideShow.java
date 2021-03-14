@@ -4,6 +4,7 @@ import config.Config;
 import database.records.InsertRecords;
 import database.records.RetrieveSlideShowRecords;
 import database.records.RetrieveTextRecords;
+import javafx.scene.media.AudioClip;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,14 @@ public class SlideShow {
     }
 
     public void display() {
+        try {
+            ArrayList<Sound> sound = slides.get(currentSlide - 2).sound;
+            for (Sound s : sound) {
+                s.stop();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         slides.get(currentSlide - 1).display();
     }
 

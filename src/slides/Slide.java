@@ -7,6 +7,7 @@ import database.records.RetrieveTextRecords;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
@@ -23,7 +24,7 @@ public class Slide {
     int slideNumber;
     int ID;
     public Pane pane;
-    private MediaPlayer player;
+    AudioClip player;
     private Config config = new Config();
 
     /**
@@ -74,7 +75,7 @@ public class Slide {
             t.display(pane);
         }
         for (Sound s : sound) {
-            s.play();
+            s.play(player);
         }
         for (Image i : image) {
             i.display(pane);

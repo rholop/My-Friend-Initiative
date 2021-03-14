@@ -18,6 +18,7 @@ public class Sound {
     private int volume;
     private int ID;
     private Config config = new Config();
+    public AudioClip player;
 
     /**
      * Constructor for the sound class.
@@ -125,14 +126,19 @@ public class Sound {
     /**
      * Displays the sound on the slide
      */
-    public void play() {
+    public void play(AudioClip mediaPlayer) {
         // print the values for now
         String directory = System.getProperty("user.dir");
         String location = directory + "\\src\\assets\\sounds\\" + fileLocation;
         URI file = new File(location).toURI();
         Media media = new Media(file.toString());
-        AudioClip mediaPlayer = new AudioClip(media.getSource());
+        mediaPlayer = new AudioClip(media.getSource());
         mediaPlayer.play();
+        player = mediaPlayer;
+    }
+
+    public void stop() {
+        player.stop();
     }
 
     public boolean equals(Sound sound) {
