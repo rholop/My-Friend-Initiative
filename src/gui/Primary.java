@@ -8,7 +8,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -61,6 +63,34 @@ public class Primary extends Application{
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     image.move((int) mouseEvent.getX(), (int) mouseEvent.getY());
+                }
+            });
+        }
+
+        ArrayList<Text> textObjects = slide.getText();
+        for(Text text : textObjects) {
+            javafx.scene.text.Text theText = text.getText();
+            theText.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if(mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                        if (mouseEvent.getClickCount() == 2) {
+                            System.out.println("Double click");
+                        }
+                    }
+                }
+            });
+            theText.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    theText.setX(mouseEvent.getX());
+                    theText.setY(mouseEvent.getY());
+                }
+            });
+            theText.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    text.moveText((int) mouseEvent.getX(), (int) mouseEvent.getY());
                 }
             });
         }

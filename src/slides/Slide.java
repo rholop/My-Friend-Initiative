@@ -95,6 +95,10 @@ public class Slide {
         return image;
     }
 
+    public ArrayList<Text> getText() {
+        return text;
+    }
+
     /**
      * Removes the sound with the given ID from the database
      * @param id The ID of the sound to remove from the database

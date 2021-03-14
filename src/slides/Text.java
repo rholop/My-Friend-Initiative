@@ -18,6 +18,7 @@ public class Text {
     private String color;
     private int ID;
     private Config config = new Config();
+    private javafx.scene.text.Text text;
 
     /**
      * Constructor for the Text class
@@ -37,6 +38,15 @@ public class Text {
         this.font = font;
         this.color = color;
         this.ID = ID;
+
+        text = new javafx.scene.text.Text();
+        text.setText(content);
+        text.setTranslateX(x);
+        text.setTranslateY(y);
+        Font theFont = new Font(font, size);
+        text.setFont(theFont);
+        Color thisColor = Color.web(color);
+        text.setFill(thisColor);
     }
 
     /**
@@ -55,6 +65,15 @@ public class Text {
         this.size = size;
         this.font = font;
         this.color = color;
+
+        text = new javafx.scene.text.Text();
+        text.setText(content);
+        text.setTranslateX(x);
+        text.setTranslateY(y);
+        Font theFont = new Font(font, size);
+        text.setFont(theFont);
+        Color thisColor = Color.web(color);
+        text.setFill(thisColor);
     }
 
     /**
@@ -105,6 +124,13 @@ public class Text {
         return this.color;
     }
 
+    /**
+     * Getter method for the Text object
+     * @return The Text object
+     */
+    public javafx.scene.text.Text getText() {
+        return this.text;
+    }
     /**
      * Setter method for the text contained in the object
      * @param content The text to be contained in the object
@@ -241,14 +267,6 @@ public class Text {
     public void display(Pane pane) {
         // print the values for now
         System.out.print(content + ", " + x + ", " + y + ", " + size + ", " + font + ", " + color + "\n");
-        javafx.scene.text.Text theText = new javafx.scene.text.Text();
-        theText.setText(content);
-        theText.setTranslateX(x);
-        theText.setTranslateY(y);
-        Font theFont = new Font(font, size);
-        theText.setFont(theFont);
-        Color thisColor = Color.web(color);
-        theText.setFill(thisColor);
-        pane.getChildren().add(theText);
+        pane.getChildren().add(text);
     }
 }
