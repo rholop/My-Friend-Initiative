@@ -18,6 +18,7 @@ public class Image {
     private double x;
     private double y;
     private int ID;
+    private ImageView view;
     private Config config = new Config();
 
     /**
@@ -36,6 +37,15 @@ public class Image {
         this.x = x;
         this.y = y;
         this.ID = ID;
+
+        String directory = System.getProperty("user.dir");
+        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
+        javafx.scene.image.Image img = new javafx.scene.image.Image(location);
+        view = new ImageView(img);
+        view.setFitHeight(height);
+        view.setFitWidth(width);
+        view.setTranslateX(x);
+        view.setTranslateY(y);
     }
 
     /**
@@ -52,6 +62,15 @@ public class Image {
         this.width = width;
         this.x = x;
         this.y = y;
+
+        String directory = System.getProperty("user.dir");
+        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
+        javafx.scene.image.Image img = new javafx.scene.image.Image(location);
+        view = new ImageView(img);
+        view.setFitHeight(height);
+        view.setFitWidth(width);
+        view.setTranslateX(x);
+        view.setTranslateY(y);
     }
 
     /**
@@ -100,6 +119,14 @@ public class Image {
      */
     public int getID() {
         return ID;
+    }
+
+    /**
+     * Getter method for the ImageView
+     * @return The ImageView
+     */
+    public ImageView getView() {
+        return view;
     }
 
     /**
@@ -256,14 +283,6 @@ public class Image {
     public void display(Pane pane) {
         // print the values for now
         System.out.print(fileLocation + ", " + height + ", " + width + ", " + x + ", " + y + "\n");
-        String directory = System.getProperty("user.dir");
-        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
-        javafx.scene.image.Image img = new javafx.scene.image.Image(location);
-        ImageView view = new ImageView(img);
-        view.setFitHeight(height);
-        view.setFitWidth(width);
-        view.setTranslateX(x);
-        view.setTranslateY(y);
         pane.getChildren().add(view);
     }
 }

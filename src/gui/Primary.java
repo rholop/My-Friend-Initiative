@@ -6,7 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -17,6 +20,8 @@ import slides.Sound;
 import slides.Slide;
 import slides.Text;
 import javafx.scene.Group;
+
+import java.util.ArrayList;
 
 public class Primary extends Application{
 
@@ -39,6 +44,26 @@ public class Primary extends Application{
         pane.setTranslateX(100);
         GridPane grid = new GridPane();
         group.getChildren().add(grid);
+
+        ArrayList<Image> images = slide.getImages();
+        for (Image image : images) {
+            ImageView view = image.getView();
+            view.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    //view.setTranslateX(mouseEvent.getX());
+                    //view.setTranslateY(mouseEvent.getY());
+                    view.setX(mouseEvent.getX() - (view.getFitWidth() / 2));
+                    view.setY(mouseEvent.getY() - (view.getFitHeight() / 2));
+                }
+            });
+            view.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    image.move((int) mouseEvent.getX(), (int) mouseEvent.getY());
+                }
+            });
+        }
 
         /////////////////////////////////////////////
 

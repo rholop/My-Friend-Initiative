@@ -88,6 +88,14 @@ public class Slide {
     }
 
     /**
+     * Getter method for the images on the slide
+     * @return The images on the slide
+     */
+    public ArrayList<Image> getImages() {
+        return image;
+    }
+
+    /**
      * Removes the sound with the given ID from the database
      * @param id The ID of the sound to remove from the database
      */
