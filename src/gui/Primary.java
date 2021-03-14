@@ -20,8 +20,13 @@ import javafx.scene.control.Label;
 import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
-
 import java.util.ArrayList;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.paint.Color;
+import javafx.scene.control.Slider;
+
 
 public class Primary extends Application{
 
@@ -114,7 +119,7 @@ public class Primary extends Application{
             }
         });
         group.getChildren().add(imageButton);
-        grid.add(imageButton, 0, 0);
+        grid.add(imageButton, 1, 0);
         grid.setMargin(imageButton, new Insets(5,5,5,5));
 
         Button soundButton = new Button("Add Sound Effect");
@@ -127,6 +132,18 @@ public class Primary extends Application{
         group.getChildren().add(soundButton);
         grid.add(soundButton, 0, 1);
         grid.setMargin(soundButton, new Insets(5,5,5,5));
+
+        Button addSlideButton = new Button("Add a New Slide");
+        addSlideButton.setOnAction(new EventHandler<ActionEvent> (){
+            @Override
+            public void handle(ActionEvent event){
+                addSlideButton.setText("You pressed the add slide button");
+            }
+        });
+        group.getChildren().add(addSlideButton);
+        grid.add(addSlideButton, 0, 0);
+        grid.setMargin(addSlideButton, new Insets(5,5,5,5));
+
 
         /////////////////////////////////////////////////////
         group.getChildren().add(pane);
