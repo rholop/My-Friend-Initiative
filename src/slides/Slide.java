@@ -21,6 +21,7 @@ public class Slide {
     ArrayList<Text> text;
     ArrayList<Sound> sound;
     ArrayList<Image> image;
+    ArrayList<Video> video;
     int slideNumber;
     int ID;
     public Pane pane;
@@ -37,6 +38,7 @@ public class Slide {
         text = new ArrayList<>();
         sound = new ArrayList<>();
         image = new ArrayList<>();
+        video = new ArrayList<>();
         pane = new Pane();
         pane.setPrefWidth(1200);
         pane.setPrefHeight(600);
@@ -51,6 +53,7 @@ public class Slide {
         text = new ArrayList<>();
         sound = new ArrayList<>();
         image = new ArrayList<>();
+        video = new ArrayList<>();
         pane = new Pane();
         pane.setPrefWidth(1200);
         pane.setPrefHeight(600);
@@ -63,6 +66,7 @@ public class Slide {
         this.text = Text.getFromDB(slideNumber);
         this.sound = Sound.getFromDB(slideNumber);
         this.image = Image.getFromDB(slideNumber);
+        this.video = Video.getFromDB(slideNumber);
         // set up the text, image, and sound objects
     }
 
@@ -79,6 +83,9 @@ public class Slide {
         }
         for (Image i : image) {
             i.display(pane);
+        }
+        for (Video v : video) {
+            v.display(pane);
         }
         // display the slide
     }
@@ -111,6 +118,15 @@ public class Slide {
     }
 
     /**
+     * Adds a video object to the slideshow
+     * @param video The video object to add to the slideshow
+     */
+    public void addVideo(Video video) {
+        video.setToDB(slideNumber);
+        this.video.add(video);
+    }
+
+    /**
      * Getter method for the images on the slide
      * @return The images on the slide
      */
@@ -124,6 +140,14 @@ public class Slide {
      */
     public ArrayList<Text> getText() {
         return text;
+    }
+
+    /**
+     * Getter method for the video on the slide
+     * @return The video on the slide
+     */
+    public ArrayList<Video> getVideo() {
+        return video;
     }
 
     /**
