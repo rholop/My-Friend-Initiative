@@ -60,6 +60,10 @@ public class SlideShow {
         return slides;
     }
 
+    public int getCurrentSlide() {
+        return currentSlide;
+    }
+
     public void goToNext() {
         currentSlide++;
         display();
