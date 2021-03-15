@@ -144,6 +144,33 @@ public class Primary extends Application{
         }
 
         /////////////////////////////////////////////
+        Button convertToPDFButton = new Button("Convert Current Slide to PDF");
+        convertToPDFButton.setOnAction(new EventHandler<ActionEvent> (){
+            @Override
+            public void handle(ActionEvent event){
+                slideshow.goToNext();
+                group.getChildren().remove(pane);
+                group.getChildren().add(slide1.pane);
+                convertToPDFButton.setText("You pressed the PDF button");
+            }
+        });
+        group.getChildren().add(convertToPDFButton);
+        grid.add(convertToPDFButton, 0, 8);
+        grid.setMargin(convertToPDFButton, new Insets(5,5,5,5));
+
+        Button newSlideButton = new Button("New Slide");
+        newSlideButton.setOnAction(new EventHandler<ActionEvent> (){
+            @Override
+            public void handle(ActionEvent event){
+                slideshow.goToNext();
+                group.getChildren().remove(pane);
+                group.getChildren().add(slide1.pane);
+                newSlideButton.setText("You pressed the add slide button");
+            }
+        });
+        group.getChildren().add(newSlideButton);
+        grid.add(newSlideButton, 0, 7);
+        grid.setMargin(newSlideButton, new Insets(5,5,5,5));
 
         Button nextSlideButton = new Button("Next Slide");
         nextSlideButton.setOnAction(new EventHandler<ActionEvent> (){
