@@ -5,6 +5,7 @@ import database.records.InsertRecords;
 import database.records.RetrieveSlideRecords;
 import database.records.RetrieveTextRecords;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
@@ -22,7 +23,7 @@ public class Slide {
     ArrayList<Sound> sound;
     ArrayList<Image> image;
     ArrayList<Video> video;
-    int slideNumber;
+    public int slideNumber;
     int ID;
     public Pane pane;
     AudioClip player;
@@ -40,8 +41,12 @@ public class Slide {
         image = new ArrayList<>();
         video = new ArrayList<>();
         pane = new Pane();
-        pane.setPrefWidth(1200);
+        pane.setPrefWidth(1000);
         pane.setPrefHeight(600);
+        pane.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-color: black;");
     }
 
     /**
@@ -55,8 +60,12 @@ public class Slide {
         image = new ArrayList<>();
         video = new ArrayList<>();
         pane = new Pane();
-        pane.setPrefWidth(1200);
+        pane.setPrefWidth(1000);
         pane.setPrefHeight(600);
+        pane.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-color: black;");
     }
 
     /**
