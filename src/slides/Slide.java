@@ -43,10 +43,6 @@ public class Slide {
         pane = new Pane();
         pane.setPrefWidth(1000);
         pane.setPrefHeight(600);
-        pane.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 2;" +
-                "-fx-border-color: black;");
     }
 
     /**
@@ -62,10 +58,6 @@ public class Slide {
         pane = new Pane();
         pane.setPrefWidth(1000);
         pane.setPrefHeight(600);
-        pane.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 2;" +
-                "-fx-border-color: black;");
     }
 
     /**
