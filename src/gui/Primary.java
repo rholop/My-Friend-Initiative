@@ -35,11 +35,11 @@ public class Primary extends Application{
 
         DatabaseSetup.setup();
         Slide slide = new Slide(1);
-        slide.addText(new Text("Hello World", 0, 0, 30, "Times New Roman", "#66ccff"));
+        slide.addText(new Text("Hello World", 0, 30, 30, "Times New Roman", "#66ccff"));
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
-        slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
+        slide.addImage(new Image("snek.jpg", 100, 100, 0, 0));
         //slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
-        //slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
+        //slide.addSound(new Sound("background/anewbeginning.mp3", 10));
 
         //WebView webView = new WebView();
         //WebEngine webEngine = webView.getEngine();
@@ -102,14 +102,14 @@ public class Primary extends Application{
             view.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    view.setX(mouseEvent.getX() - (view.getFitWidth() / 2));
-                    view.setY(mouseEvent.getY() - (view.getFitHeight() / 2));
+                    view.setX(mouseEvent.getX());
+                    view.setY(mouseEvent.getY());
                 }
             });
             view.setOnMouseReleased(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    image.move((int)mouseEvent.getX() + 150, (int)mouseEvent.getY());
+                    image.move((int)mouseEvent.getX(), (int)mouseEvent.getY());
                     System.out.println(image.getX() + ", " + image.getY());
                 }
             });

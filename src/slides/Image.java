@@ -39,7 +39,7 @@ public class Image {
         this.ID = ID;
 
         String directory = System.getProperty("user.dir");
-        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
+        String location = "File:" + directory + "/src/assets/images/" + fileLocation;
         javafx.scene.image.Image img = new javafx.scene.image.Image(location);
         view = new ImageView(img);
         view.setFitHeight(height);
@@ -64,7 +64,7 @@ public class Image {
         this.y = y;
 
         String directory = System.getProperty("user.dir");
-        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
+        String location = "File:" + directory + "/src/assets/images/" + fileLocation;
         javafx.scene.image.Image img = new javafx.scene.image.Image(location);
         view = new ImageView(img);
         view.setFitHeight(height);
@@ -252,7 +252,7 @@ public class Image {
      */
     public static void moveToAssets(String originalFileLocation, String fileName) {
         try {
-            String assetLocation = System.getProperty("user.dir") + "\\src\\assets\\images\\" + fileName;
+            String assetLocation = System.getProperty("user.dir") + "/src/assets/images/" + fileName;
             Files.move(Paths.get(originalFileLocation), Paths.get(assetLocation));
         } catch (IOException e) {
             e.printStackTrace();
