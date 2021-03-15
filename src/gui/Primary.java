@@ -5,10 +5,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -16,18 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
 import java.util.ArrayList;
-import javafx.application.Application;
-import javafx.event.*;
-import javafx.scene.Scene;
+
 import javafx.scene.control.ColorPicker;
-import javafx.geometry.Insets;
-import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-import javafx.stage.Stage;
 import slides.Text;
 
 public class Primary extends Application{
@@ -38,7 +28,7 @@ public class Primary extends Application{
         Group group = new Group();
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(10, 10, 10, 10));
-        ArrayList<Button> buttons = new ArrayList<Button>();
+        ArrayList<Button> buttons = new ArrayList<>();
 
         //Label label = new Label("This is a test label!");
         //Scene scene = new Scene(label, 1200, 600);
@@ -48,8 +38,8 @@ public class Primary extends Application{
         slide.addText(new Text("Hello World", 100, 200, 30, "Times New Roman", "#66ccff"));
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
-        slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
-        slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
+        //slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
+        //slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
 
         //WebView webView = new WebView();
         //WebEngine webEngine = webView.getEngine();
@@ -81,9 +71,10 @@ public class Primary extends Application{
         vb.setSpacing(8);
 
         ColorPicker colorPicker = new ColorPicker(Color.BLACK);
-        colorPicker.setPrefSize(100,30);
-        colorPicker.setTranslateX(200);
-        colorPicker.setTranslateY(200);
+        //colorPicker.setPrefSize(100,30);
+        //colorPicker.setTranslateX(200);
+        //colorPicker.setTranslateY(200);
+
         //group.getChildren().add(colorPicker);
         //grid.add(colorPicker, 0, 5);
         //grid.setMargin(colorPicker, new Insets(5,5,5,5));
@@ -221,6 +212,7 @@ public class Primary extends Application{
         for (Button b : buttons) {
             vb.getChildren().add(b);
         }
+        vb.getChildren().add(colorPicker);
 
 
 
