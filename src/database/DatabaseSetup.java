@@ -44,6 +44,13 @@ public class DatabaseSetup {
         LinkedHashMap<String, String> soundFields = new LinkedHashMap<>();
         soundFields.put("file_location", "text");
         soundFields.put("volume", "int");
+        
+        LinkedHashMap<String, String> videoFields = new LinkedHashMap<>();
+        videoFields.put("video_link", "text");
+        imageFields.put("height", "double");
+        imageFields.put("width", "double");
+        imageFields.put("x", "double");
+        imageFields.put("y", "double");
 
         LinkedHashMap<String, String> slideFields = new LinkedHashMap<>();
         slideFields.put("slide_number", "int");
@@ -54,16 +61,19 @@ public class DatabaseSetup {
 
         LinkedHashMap<String, String> textForeignKeys = new LinkedHashMap<>();
         LinkedHashMap<String, String> imageForeignKeys = new LinkedHashMap<>();
+        LinkedHashMap<String, String> videoForeignKeys = new LinkedHashMap<>();
         LinkedHashMap<String, String> soundForeignKeys = new LinkedHashMap<>();
         LinkedHashMap<String, String> slideForeignKeys = new LinkedHashMap<>();
         textForeignKeys.put("slide_number", "Slide(slide_number)");
         imageForeignKeys.put("slide_number", "Slide(slide_number)");
+        videoForeignKeys.put("slide_number", "Slide(slide_number)");
         soundForeignKeys.put("slide_number", "Slide(slide_number)");
         slideForeignKeys.put("slideshow_id", "Slideshow(id)");
 
         // Create the tables
         TableCreator.create(url, "Text", fields, textForeignKeys);
         TableCreator.create(url, "Image", imageFields, imageForeignKeys);
+        TableCreator.create(url, "Video", videoFields, videoForeignKeys);
         TableCreator.create(url, "Sound", soundFields, soundForeignKeys);
         TableCreator.create(url, "Slideshow", slideshowFields, null);
         TableCreator.create(url, "Slide", slideFields, slideForeignKeys);
