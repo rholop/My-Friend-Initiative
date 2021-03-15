@@ -129,7 +129,7 @@ public class Sound {
     public void play(AudioClip mediaPlayer) {
         // print the values for now
         String directory = System.getProperty("user.dir");
-        String location = directory + "/src/assets/sounds/" + fileLocation;
+        String location = directory + "\\src\\assets\\sounds\\" + fileLocation;
         URI file = new File(location).toURI();
         Media media = new Media(file.toString());
         mediaPlayer = new AudioClip(media.getSource());

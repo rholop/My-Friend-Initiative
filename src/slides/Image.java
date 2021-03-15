@@ -39,7 +39,7 @@ public class Image {
         this.ID = ID;
 
         String directory = System.getProperty("user.dir");
-        String location = "File:" + directory + "/src/assets/images/" + fileLocation;
+        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
         javafx.scene.image.Image img = new javafx.scene.image.Image(location);
         view = new ImageView(img);
         view.setFitHeight(height);
@@ -64,7 +64,7 @@ public class Image {
         this.y = y;
 
         String directory = System.getProperty("user.dir");
-        String location = "File:" + directory + "/src/assets/images/" + fileLocation;
+        String location = "File:" + directory + "\\src\\assets\\images\\" + fileLocation;
         javafx.scene.image.Image img = new javafx.scene.image.Image(location);
         view = new ImageView(img);
         view.setFitHeight(height);
@@ -235,7 +235,7 @@ public class Image {
     public void setToDB(int slideNumber) {
         InsertRecords.insertImage(config.getURL(), fileLocation, height, width, x, y, slideNumber);
         String[] fields = {"id"};
-        ID = (int) RetrieveImageRecords.selectSome("jdbc:sqlite:C:/sqlite/db/name.db", "Image", fields).get("id");
+        ID = (int) RetrieveImageRecords.selectSome("jdbc:sqlite:C:\\sqlite\\db\\name.db", "Image", fields).get("id");
     }
 
     /**

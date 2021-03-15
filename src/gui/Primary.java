@@ -37,7 +37,7 @@ public class Primary extends Application{
         Slide slide = new Slide(1);
         slide.addText(new Text("Hello World", 0, 30, 30, "Times New Roman", "#66ccff"));
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
-        slide.addImage(new Image("snek.jpg", 100, 100, 0, 0));
+        slide.addImage(new Image("snek.jpg", 200, 200, 0, 0));
         //slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
         //slide.addSound(new Sound("background/anewbeginning.mp3", 10));
 

@@ -24,7 +24,7 @@ public class Config {
 
     public void setConfig(String directory, String url) {
         String userDirectory = System.getProperty("user.dir");
-        File newFile = new File(userDirectory + "/config.properties");
+        File newFile = new File(userDirectory + "\\config.properties");
         try {
             if (newFile.exists()) {
                 newFile.delete();
