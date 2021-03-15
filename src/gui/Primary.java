@@ -35,7 +35,7 @@ public class Primary extends Application{
 
         DatabaseSetup.setup();
         Slide slide = new Slide(1);
-        slide.addText(new Text("Hello World", 100, 200, 30, "Times New Roman", "#66ccff"));
+        slide.addText(new Text("Hello World", 0, 0, 30, "Times New Roman", "#66ccff"));
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
         //slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
@@ -60,7 +60,7 @@ public class Primary extends Application{
         Pane pane = slide.pane;
         //pane.setTranslateX(150);
         //pane.setTranslateY(-100);
-        GridPane grid = new GridPane();
+        Pane grid = slide.pane;
         grid.setStyle("-fx-padding: 10;" +
                 "-fx-border-style: solid inside;" +
                 "-fx-border-width: 2;" +
@@ -233,7 +233,7 @@ public class Primary extends Application{
 
 
         /////////////////////////////////////////////////////
-        grid.getChildren().add(pane);
+        //grid.getChildren().add(pane);
         border.setLeft(vb);
         border.setCenter(grid);
 
