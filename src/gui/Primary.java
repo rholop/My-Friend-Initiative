@@ -14,6 +14,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import pdf.PDFConverter;
 import slides.*;
@@ -44,8 +46,12 @@ public class Primary extends Application{
         slide.addText(new Text("Hello World", 100, 200, 30, "Times New Roman", "#66ccff"));
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
-        slide.addVideo(new Video("https://www.youtube.com/watch?v=811QZGDysx0", 500, 500, 300, 200));
+        slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
         slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
+
+        //WebView webView = new WebView();
+        //WebEngine webEngine = webView.getEngine();
+        //webEngine.load("https://www.youtube.com/embed/811QZGDysx0");
 
         Slide slide1 = new Slide(2);
         slide1.addText(new Text("Hello Again", 200, 300, 20, "Comic Sans", "#000000"));
@@ -56,7 +62,7 @@ public class Primary extends Application{
         slideshow.addSlide(slide1);
         slide.setup();
         slideshow.display();
-        PDFConverter.saveToPDF(slideshow);
+        // PDFConverter.saveToPDF(slideshow);
 
         stage.show();
         Pane pane = slide.pane;
@@ -64,6 +70,8 @@ public class Primary extends Application{
         pane.setTranslateY(-100);
         GridPane grid = new GridPane();
         group.getChildren().add(grid);
+
+        //pane.getChildren().add(webView);
 
         ColorPicker colorPicker = new ColorPicker(Color.BLACK);
         colorPicker.setPrefSize(100,30);

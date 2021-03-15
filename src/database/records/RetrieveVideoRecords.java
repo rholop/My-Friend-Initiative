@@ -25,7 +25,7 @@ public class RetrieveVideoRecords extends RetrieveRecords {
             // loop through the result set
             while (rs.next()) {
                 LinkedHashMap<String, Object> result = new LinkedHashMap<>();
-                result.put("video_link", rs.getString("text"));
+                result.put("video_link", rs.getString("video_link"));
                 result.put("height", rs.getDouble("height"));
                 result.put("width", rs.getDouble("width"));
                 result.put("x", rs.getDouble("x"));
@@ -56,7 +56,7 @@ public class RetrieveVideoRecords extends RetrieveRecords {
             // loop through the result set
             while (rs.next()) {
                 LinkedHashMap<String, Object> result = new LinkedHashMap<>();
-                result.put("video_link", rs.getString("text"));
+                result.put("video_link", rs.getString("video_link"));
                 result.put("height", rs.getDouble("height"));
                 result.put("width", rs.getDouble("width"));
                 result.put("x", rs.getDouble("x"));

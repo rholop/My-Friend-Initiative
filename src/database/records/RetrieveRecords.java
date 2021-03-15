@@ -45,7 +45,6 @@ public abstract class RetrieveRecords {
             // Print out all of the fields we selected
             while (rs.next()) {
                 for (String field : fields) {
-                    System.out.println(rs.getObject(field));
                     results.put(field, rs.getObject(field));
                 }
             }

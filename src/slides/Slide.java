@@ -67,6 +67,9 @@ public class Slide {
         this.sound = Sound.getFromDB(slideNumber);
         this.image = Image.getFromDB(slideNumber);
         this.video = Video.getFromDB(slideNumber);
+        for (Video v : video) {
+            System.out.println(v.getVideo_link());
+        }
         // set up the text, image, and sound objects
     }
 

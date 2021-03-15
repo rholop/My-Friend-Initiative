@@ -23,6 +23,7 @@ public class DatabaseSetup {
         TableDropper.drop(url, "Slide");
         TableDropper.drop(url, "Image");
         TableDropper.drop(url, "Text");
+        TableDropper.drop(url, "Video");
         TableDropper.drop(url, "Sound");
 
         // Create the tables
@@ -47,10 +48,10 @@ public class DatabaseSetup {
         
         LinkedHashMap<String, String> videoFields = new LinkedHashMap<>();
         videoFields.put("video_link", "text");
-        imageFields.put("height", "double");
-        imageFields.put("width", "double");
-        imageFields.put("x", "double");
-        imageFields.put("y", "double");
+        videoFields.put("height", "double");
+        videoFields.put("width", "double");
+        videoFields.put("x", "double");
+        videoFields.put("y", "double");
 
         LinkedHashMap<String, String> slideFields = new LinkedHashMap<>();
         slideFields.put("slide_number", "int");

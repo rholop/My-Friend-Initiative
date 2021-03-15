@@ -215,9 +215,11 @@ public class Video {
     public void display(Pane pane) {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        webEngine.loadContent(video_link);
+        webEngine.load(video_link);
         webView.setPrefHeight(height);
         webView.setPrefHeight(width);
+        webView.setTranslateX(x);
+        webView.setTranslateY(y);
 
         pane.getChildren().add(webView);
     }
