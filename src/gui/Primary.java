@@ -58,8 +58,8 @@ public class Primary extends Application{
 
         stage.show();
         Pane pane = slide.pane;
-        pane.setTranslateX(150);
-        pane.setTranslateY(-100);
+        //pane.setTranslateX(150);
+        //pane.setTranslateY(-100);
         GridPane grid = new GridPane();
         grid.setStyle("-fx-padding: 10;" +
                 "-fx-border-style: solid inside;" +
@@ -154,23 +154,10 @@ public class Primary extends Application{
                 convertToPDFButton.setText("You pressed the PDF button");
             }
         });
-        group.getChildren().add(convertToPDFButton);
-        grid.add(convertToPDFButton, 0, 8);
-        grid.setMargin(convertToPDFButton, new Insets(5,5,5,5));
-
-        Button newSlideButton = new Button("New Slide");
-        newSlideButton.setOnAction(new EventHandler<ActionEvent> (){
-            @Override
-            public void handle(ActionEvent event){
-                slideshow.goToNext();
-                group.getChildren().remove(pane);
-                group.getChildren().add(slide1.pane);
-                newSlideButton.setText("You pressed the add slide button");
-            }
-        });
-        group.getChildren().add(newSlideButton);
-        grid.add(newSlideButton, 0, 7);
-        grid.setMargin(newSlideButton, new Insets(5,5,5,5));
+        //group.getChildren().add(convertToPDFButton);
+        //grid.add(convertToPDFButton, 0, 8);
+        //grid.setMargin(convertToPDFButton, new Insets(5,5,5,5));
+        buttons.add(convertToPDFButton);
 
         Button nextSlideButton = new Button("Next Slide");
         nextSlideButton.setOnAction(new EventHandler<ActionEvent> (){
