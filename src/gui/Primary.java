@@ -118,8 +118,20 @@ public class Primary extends Application{
             }
         });
         group.getChildren().add(nextSlideButton);
-        grid.add(nextSlideButton, 3, 0);
+        grid.add(nextSlideButton, 0, 0);
         grid.setMargin(nextSlideButton, new Insets(5,5,5,5));
+
+        Button prevSlideButton = new Button("Previous Slide");
+        prevSlideButton.setOnAction(new EventHandler<ActionEvent> (){
+            @Override
+            public void handle(ActionEvent event){
+                prevSlideButton.setText("You pressed the previous slide button");
+            }
+        });
+        group.getChildren().add(prevSlideButton);
+        grid.add(prevSlideButton, 0, 1);
+        grid.setMargin(prevSlideButton, new Insets(5,5,5,5));
+
 
         Button soundButton = new Button("Add Sound Effect");
         soundButton.setOnAction(new EventHandler<ActionEvent> (){
@@ -129,7 +141,7 @@ public class Primary extends Application{
             }
         });
         group.getChildren().add(soundButton);
-        grid.add(soundButton, 0, 1);
+        grid.add(soundButton, 0, 2);
         grid.setMargin(soundButton, new Insets(5,5,5,5));
 
         Button addImageButton = new Button("Add Image");
@@ -140,19 +152,8 @@ public class Primary extends Application{
             }
         });
         group.getChildren().add(addImageButton);
-        grid.add(addImageButton, 1, 0);
+        grid.add(addImageButton, 0, 3);
         grid.setMargin(addImageButton, new Insets(5,5,5,5));
-
-        Button prevSlideButton = new Button("Previous Slide");
-        prevSlideButton.setOnAction(new EventHandler<ActionEvent> (){
-            @Override
-            public void handle(ActionEvent event){
-                prevSlideButton.setText("You pressed the previous slide button");
-            }
-        });
-        group.getChildren().add(prevSlideButton);
-        grid.add(prevSlideButton, 2, 0);
-        grid.setMargin(prevSlideButton, new Insets(5,5,5,5));
 
         Button addSlideButton = new Button("Add a New Slide");
         addSlideButton.setOnAction(new EventHandler<ActionEvent> (){
@@ -162,7 +163,7 @@ public class Primary extends Application{
             }
         });
         group.getChildren().add(addSlideButton);
-        grid.add(addSlideButton, 0, 0);
+        grid.add(addSlideButton, 0, 4);
         grid.setMargin(addSlideButton, new Insets(5,5,5,5));
 
         /////////////////////////////////////////////////////
