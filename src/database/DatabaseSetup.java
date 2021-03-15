@@ -10,7 +10,8 @@ public class DatabaseSetup {
     //TODO: Create all of the tables in the database
     public static void setup() {
         Config config = new Config();
-        String path = System.getProperty("user.dir") + "\\db\\";
+        String path = System.getProperty("user.home") + "\\db\\";
+        System.out.println(path);
         String database = "name.db";
         String url = "jdbc:sqlite:" + path + database;
         config.setConfig(path, url);
