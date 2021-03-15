@@ -6,21 +6,29 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
 import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
 import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.event.*;
+import javafx.scene.Scene;
+import javafx.scene.control.ColorPicker;
+import javafx.geometry.Insets;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.stage.Stage;
+import slides.Text;
 
 public class Primary extends Application{
 
@@ -55,6 +63,28 @@ public class Primary extends Application{
         pane.setTranslateY(-100);
         GridPane grid = new GridPane();
         group.getChildren().add(grid);
+
+        ColorPicker colorPicker = new ColorPicker(Color.BLACK);
+        colorPicker.setPrefSize(100,30);
+        colorPicker.setTranslateX(200);
+        colorPicker.setTranslateY(200);
+        group.getChildren().add(colorPicker);
+        grid.add(colorPicker, 0, 5);
+        grid.setMargin(colorPicker, new Insets(5,5,5,5));
+
+        Button textBtn = new Button("Text");
+        group.getChildren().add(textBtn);
+        grid.add(textBtn, 0, 6);
+        grid.setMargin(textBtn, new Insets(5,5,5,5));
+        textBtn.setUserData("Line");
+        textBtn.setTooltip(new Tooltip("Click to add text"));
+        textBtn.setOnAction(new EventHandler<ActionEvent>() {
+            //fill in with modified code from project 1
+            @Override
+            public void handle(ActionEvent event){
+                textBtn.setText("You pressed the add text button");
+            }
+        });
 
         ///////////////////////////////////
 
