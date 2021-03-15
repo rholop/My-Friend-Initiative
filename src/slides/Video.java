@@ -181,7 +181,7 @@ public class Video {
     public static ArrayList<Video> getFromDB(int slideNumber) {
         Config config = new Config();
         ArrayList<LinkedHashMap<String, Object>> videoData =
-                new RetrieveTextRecords().selectAllFromSlide(config.getURL(), slideNumber);
+                new RetrieveVideoRecords().selectAllFromSlide(config.getURL(), slideNumber);
         ArrayList<Video> videoObjects = new ArrayList<>();
         for (LinkedHashMap<String, Object> video : videoData) {
             Video video1 = new Video((String)video.get("video_link"), (double)video.get("height"),
