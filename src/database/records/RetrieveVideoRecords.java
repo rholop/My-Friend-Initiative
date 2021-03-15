@@ -11,12 +11,12 @@ import java.util.LinkedHashMap;
 
 public class RetrieveVideoRecords extends RetrieveRecords {
     /***
-     * Selects all records from the Text table
+     * Selects all records from the Video table
      * @param url The SQLite URL
      * @return An ArrayList of the records in the table
      */
     public ArrayList<LinkedHashMap<String, Object>> selectAll(String url) {
-        String sql = "SELECT * FROM Text";
+        String sql = "SELECT * FROM Video";
         ArrayList<LinkedHashMap<String, Object>> results = new ArrayList<>();
         try {
             Connection conn = DatabaseConnector.connect(url).conn;
@@ -42,12 +42,12 @@ public class RetrieveVideoRecords extends RetrieveRecords {
     }
 
     /***
-     * Selects all records from the Text table where the given slide number is
+     * Selects all records from the Video table where the given slide number is
      * @param url The SQLite URL
-     * @param slideNumber the number of the slide to select text from
+     * @param slideNumber the number of the slide to select video from
      */
     public ArrayList<LinkedHashMap<String, Object>> selectAllFromSlide(String url, int slideNumber) {
-        String sql = "SELECT * FROM Text WHERE slide_number = " + slideNumber + ";";
+        String sql = "SELECT * FROM Video WHERE slide_number = " + slideNumber + ";";
         ArrayList<LinkedHashMap<String, Object>> results = new ArrayList<>();
         try {
             Connection conn = DatabaseConnector.connect(url).conn;
