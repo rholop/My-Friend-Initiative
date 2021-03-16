@@ -124,7 +124,7 @@ public class Primary extends Application{
                 Stage chooseSize = new Stage();
                 // Pick X Coord.
                 TextField b1 = new TextField("Type Here");
-                // create a label
+                // create a labe
                 Label b = new Label("_Enter the X Coordinate of Your Picture");
                 // setlabel for
                 b.setLabelFor(b1);
