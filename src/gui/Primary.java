@@ -83,14 +83,8 @@ public class Primary extends Application{
         colorPicker.setPrefSize(100,30);
         colorPicker.setTranslateX(200);
         colorPicker.setTranslateY(200);
-        //group.getChildren().add(colorPicker);
-        //grid.add(colorPicker, 0, 5);
-        //grid.setMargin(colorPicker, new Insets(5,5,5,5));
 
         Button textBtn = new Button("Text");
-        //group.getChildren().add(textBtn);
-        //grid.add(textBtn, 0, 6);
-        //grid.setMargin(textBtn, new Insets(5,5,5,5));
         textBtn.setUserData("Line");
         textBtn.setTooltip(new Tooltip("Click to add text"));
         textBtn.setOnAction(new EventHandler<ActionEvent>() {

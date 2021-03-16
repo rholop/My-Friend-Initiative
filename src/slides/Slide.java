@@ -80,12 +80,10 @@ public class Slide {
             t.display(pane);
         }
         for (Sound s : sound) {
-            try {
-                s.stop();
-            } catch (Exception e) {
-                // Do nothing
-            }
             s.play(player);
+            s.stop();
+            s.play(player);
+            System.out.println(s.player.isPlaying());
         }
         for (Image i : image) {
             i.display(pane);
