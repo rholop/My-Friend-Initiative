@@ -207,6 +207,11 @@ public class Primary extends Application{
             @Override
             public void handle(ActionEvent event){
                 soundButton.setText("You pressed the sound button");
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Choose image");
+                File workingDirectory = new File(System.getProperty("user.dir") + "/src/assets/sounds/background/");
+                fileChooser.setInitialDirectory(workingDirectory);
+                File file = fileChooser.showOpenDialog(stage);
             }
         });
         //group.getChildren().add(soundButton);
