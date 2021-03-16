@@ -22,10 +22,10 @@ public class Slide {
     ArrayList<Sound> sound;
     ArrayList<Image> image;
     ArrayList<Video> video;
-    int slideNumber;
+    public int slideNumber;
     int ID;
     public Pane pane;
-    AudioClip player;
+    public AudioClip player;
     private Config config = new Config();
 
     /**
@@ -67,9 +67,6 @@ public class Slide {
         this.sound = Sound.getFromDB(slideNumber);
         this.image = Image.getFromDB(slideNumber);
         this.video = Video.getFromDB(slideNumber);
-        for (Video v : video) {
-            System.out.println(v.getVideo_link());
-        }
         // set up the text, image, and sound objects
     }
 
@@ -82,6 +79,11 @@ public class Slide {
             t.display(pane);
         }
         for (Sound s : sound) {
+            try {
+                s.stop();
+            } catch (Exception e) {
+                // Do nothing
+            }
             s.play(player);
         }
         for (Image i : image) {

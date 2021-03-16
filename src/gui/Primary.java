@@ -15,10 +15,13 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
+
+import java.io.File;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.*;
@@ -48,12 +51,8 @@ public class Primary extends Application{
         slide.addText(new Text("Hello World", 100, 200, 30, "Times New Roman", "#66ccff"));
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
-        slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
-        slide.addSound(new Sound("background\\anewbeginning.mp3", 10));
-
-        //WebView webView = new WebView();
-        //WebEngine webEngine = webView.getEngine();
-        //webEngine.load("https://www.youtube.com/embed/811QZGDysx0");
+        //slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
+        slide.addSound(new Sound("background/anewbeginning.mp3", 10));
 
         Slide slide1 = new Slide(2);
         slide1.addText(new Text("Hello Again", 200, 300, 20, "Comic Sans", "#000000"));
@@ -103,6 +102,28 @@ public class Primary extends Application{
         });
         buttons.add(textBtn);
 
+        Button addImageButton = new Button("Add Image");
+        addImageButton.setOnAction(new EventHandler<ActionEvent> (){
+            @Override
+            public void handle(ActionEvent event){
+                addImageButton.setText("You pressed the next slide button");
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Choose image");
+                File file = fileChooser.showOpenDialog(stage);
+                String[] splitFileName = file.toString().split("/");
+                String fileName = splitFileName[splitFileName.length-1];
+                String file1 = new File(fileName).toString();
+                String[] file1Split = file1.split("\\\\");
+                System.out.println(file1Split.length);
+                String name = file1Split[file1Split.length-1];
+                System.out.println(name);
+                Image image = Image.moveAndCreateImageObject(fileName, name, 200, 200, 300, 100, slide.slideNumber);
+                slide.addImage(image);
+                slide.setup();
+                slide.display();
+            }
+        });
+
         ///////////////////////////////////
 
         ArrayList<Image> images = slide.getImages();
@@ -140,13 +161,18 @@ public class Primary extends Application{
             theText.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    theText.setX(mouseEvent.getX());
-                    theText.setY(mouseEvent.getY());
+                    if (! (mouseEvent.getX() < 0)) {
+                        theText.setX(mouseEvent.getX());
+                    }
+                    if (! (mouseEvent.getY() < 0)) {
+                        theText.setY(mouseEvent.getY());
+                    }
                 }
             });
             theText.setOnMouseReleased(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
+                    System.out.println(mouseEvent.getX() + ", " + mouseEvent.getY());
                     text.moveText((int) mouseEvent.getX(), (int) mouseEvent.getY());
                 }
             });
@@ -194,13 +220,6 @@ public class Primary extends Application{
         //grid.setMargin(soundButton, new Insets(5,5,5,5));
         buttons.add(soundButton);
 
-        Button addImageButton = new Button("Add Image");
-        addImageButton.setOnAction(new EventHandler<ActionEvent> (){
-            @Override
-            public void handle(ActionEvent event){
-                addImageButton.setText("You pressed the next slide button");
-            }
-        });
        // group.getChildren().add(addImageButton);
         //grid.add(addImageButton, 0, 3);
         //grid.setMargin(addImageButton, new Insets(5,5,5,5));
