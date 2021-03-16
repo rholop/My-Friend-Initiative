@@ -24,7 +24,7 @@ public class DatabaseSetup {
         TableDropper.drop(url, "Image");
         TableDropper.drop(url, "Text");
         TableDropper.drop(url, "Video");
-        TableDropper.drop(url, "Sound");
+        // TableDropper.drop(url, "Sound");
 
         // Create the tables
         LinkedHashMap<String, String> fields = new LinkedHashMap<>();

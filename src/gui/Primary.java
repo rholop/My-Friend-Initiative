@@ -58,7 +58,7 @@ public class Primary extends Application{
         slide.addText(new Text("hello", 300, 400, 20, "Helvetica", "#000000"));
         slide.addImage(new Image("snek.jpg", 100, 100, 300, 100));
         //slide.addVideo(new Video("https://www.youtube.com/embed/811QZGDysx0", 500, 500, 300, 200));
-        slide.addSound(new Sound("background/anewbeginning.mp3", 10));
+        // slide.addSound(new Sound("background/anewbeginning.mp3", 10));
 
         Slide slide1 = new Slide(2);
         slide1.addText(new Text("Hello Again", 200, 300, 20, "Comic Sans", "#000000"));
@@ -124,7 +124,7 @@ public class Primary extends Application{
                 Stage chooseSize = new Stage();
                 // Pick X Coord.
                 TextField b1 = new TextField("Type Here");
-                // create a labe
+                // create a label
                 Label b = new Label("_Enter the X Coordinate of Your Picture");
                 // setlabel for
                 b.setLabelFor(b1);
@@ -241,6 +241,11 @@ public class Primary extends Application{
                 File workingDirectory = new File(System.getProperty("user.dir") + "/src/assets/sounds/background/");
                 fileChooser.setInitialDirectory(workingDirectory);
                 File file = fileChooser.showOpenDialog(stage);
+                System.out.println(file);
+                Sound sound = new Sound(file.toString(), 10);
+                slide.addSound(sound);
+                slide.setup();
+                slideshow.display();
             }
         });
         //group.getChildren().add(soundButton);
