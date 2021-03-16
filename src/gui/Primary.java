@@ -150,7 +150,8 @@ public class Primary extends Application{
                 chooseSize.setScene(s);
                 chooseSize.show();
 
-                Image image = Image.moveAndCreateImageObject(fileName, name, 200, 200, 300, 100, slide.slideNumber);
+                Image image = Image.moveAndCreateImageObject(fileName, name, Double.parseDouble(b42.getText()),
+                        Double.parseDouble(b12.getText()), Double.parseDouble(b1.getText()), Double.parseDouble(b4.getText()), slide.slideNumber);
                 slide.addImage(image);
                 slide.setup();
                 slide.display();
