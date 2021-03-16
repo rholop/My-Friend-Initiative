@@ -106,7 +106,7 @@ public class Primary extends Application{
         addImageButton.setOnAction(new EventHandler<ActionEvent> (){
             @Override
             public void handle(ActionEvent event){
-                addImageButton.setText("You pressed the next slide button");
+                addImageButton.setText("You pressed the add image button");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Choose image");
                 File file = fileChooser.showOpenDialog(stage);
