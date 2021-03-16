@@ -74,6 +74,7 @@ public class Sound {
         this.fileLocation = fileLocation;
         LinkedHashMap<String, Object> update = new LinkedHashMap<>();
         update.put("file_location", fileLocation);
+        System.out.println(fileLocation);
         if (ID != -1) {
             UpdateRecords.UpdateRecord(config.getURL(), "Sound", update, ID);
         }
@@ -127,10 +128,7 @@ public class Sound {
      * Displays the sound on the slide
      */
     public void play(AudioClip mediaPlayer) {
-        // print the values for now
-        String directory = System.getProperty("user.dir");
-        String location = directory + "/src/assets/sounds/" + fileLocation;
-        URI file = new File(location).toURI();
+        URI file = new File(fileLocation).toURI();
         Media media = new Media(file.toString());
         mediaPlayer = new AudioClip(media.getSource());
         mediaPlayer.play();
