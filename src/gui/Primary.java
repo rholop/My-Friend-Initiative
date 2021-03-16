@@ -117,10 +117,6 @@ public class Primary extends Application{
                 System.out.println(file1Split.length);
                 String name = file1Split[file1Split.length-1];
                 System.out.println(name);
-                Image image = Image.moveAndCreateImageObject(fileName, name, 200, 200, 300, 100, slide.slideNumber);
-                slide.addImage(image);
-                slide.setup();
-                slide.display();
                 Stage chooseSize = new Stage();
 
                 TextField b1 = new TextField("Type Here");
@@ -153,6 +149,11 @@ public class Primary extends Application{
                 Scene s = new Scene(r, 300, 250);
                 chooseSize.setScene(s);
                 chooseSize.show();
+
+                Image image = Image.moveAndCreateImageObject(fileName, name, 200, 200, 300, 100, slide.slideNumber);
+                slide.addImage(image);
+                slide.setup();
+                slide.display();
             }
         });
 
