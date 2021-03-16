@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.scene.control.*;
@@ -16,11 +17,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -31,6 +34,7 @@ import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import slides.Image;
 import slides.Text;
 
 public class Primary extends Application{
@@ -100,7 +104,7 @@ public class Primary extends Application{
         addImageButton.setOnAction(new EventHandler<ActionEvent> (){
             @Override
             public void handle(ActionEvent event){
-                addImageButton.setText("You pressed the add image button");
+                //addImageButton.setText("You pressed the add image button");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Choose image");
                 File file = fileChooser.showOpenDialog(stage);
@@ -115,6 +119,8 @@ public class Primary extends Application{
                 slide.addImage(image);
                 slide.setup();
                 slide.display();
+                Stage chooseSize = new Stage();
+                chooseSize
             }
         });
 
