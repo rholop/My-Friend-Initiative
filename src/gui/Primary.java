@@ -122,20 +122,35 @@ public class Primary extends Application{
                 slide.setup();
                 slide.display();
                 Stage chooseSize = new Stage();
+
                 TextField b1 = new TextField("Type Here");
                 Label b = new Label("_Enter the X Coordinate of Your Picture");
                 b.setLabelFor(b1);
                 TextField b4 = new TextField("Type Here");
                 Label b3 = new Label("_Enter the Y Coordinate of Your Picture");
                 b3.setLabelFor(b4);
+
+                TextField b12 = new TextField("Type Here");
+                Label b2 = new Label("_Enter the Width of Your Picture");
+                b2.setLabelFor(b12);
+                TextField b42 = new TextField("Type Here");
+                Label b32 = new Label("_Enter the Height of Your Picture");
+                b32.setLabelFor(b42);
+
                 TilePane r = new TilePane();
                 b.setMnemonicParsing(true);
                 b3.setMnemonicParsing(true);
+                b2.setMnemonicParsing(true);
+                b32.setMnemonicParsing(true);
                 r.getChildren().add(b);
                 r.getChildren().add(b1);
                 r.getChildren().add(b3);
                 r.getChildren().add(b4);
-                Scene s = new Scene(r, 300, 200);
+                r.getChildren().add(b2);
+                r.getChildren().add(b12);
+                r.getChildren().add(b32);
+                r.getChildren().add(b42);
+                Scene s = new Scene(r, 300, 250);
                 chooseSize.setScene(s);
                 chooseSize.show();
             }
