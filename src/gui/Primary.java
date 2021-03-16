@@ -122,28 +122,22 @@ public class Primary extends Application{
                 slide.setup();
                 slide.display();
                 Stage chooseSize = new Stage();
-                // Pick X Coord.
                 TextField b1 = new TextField("Type Here");
-                // create a label
                 Label b = new Label("_Enter the X Coordinate of Your Picture");
-                // setlabel for
                 b.setLabelFor(b1);
-                // TextField
                 TextField b4 = new TextField("Type Here");
-                // create a label
                 Label b3 = new Label("_Enter the Y Coordinate of Your Picture");
-                // setlabel for
                 b3.setLabelFor(b4);
-                // create a Tile pane
                 TilePane r = new TilePane();
-                // setMenemonic
                 b.setMnemonicParsing(true);
                 b3.setMnemonicParsing(true);
-                // add password field
                 r.getChildren().add(b);
                 r.getChildren().add(b1);
                 r.getChildren().add(b3);
                 r.getChildren().add(b4);
+                Scene s = new Scene(r, 300, 200);
+                chooseSize.setScene(s);
+                chooseSize.show();
             }
         });
 
