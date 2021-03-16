@@ -12,11 +12,11 @@ import java.util.LinkedHashMap;
 
 public class Main {
     public static void main(String[] args) {
-        String path = "C:/sqlite/db/";
+        String path = "C:\\sqlite\\db\\";
         String database = "name";
         String url = "jdbc:sqlite:" + path + database + ".db";
 
-        DatabaseCreator.create("C:/sqlite/db/", "name");
+        DatabaseCreator.create("C:\\sqlite\\db\\", "name");
         DatabaseConnector.connect(url);
 
         TableDropper.drop(url, "Text");

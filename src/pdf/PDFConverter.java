@@ -47,12 +47,12 @@ public class PDFConverter {
     public static void saveToPDF(SlideShow slideshow) {
         ArrayList<Image> images = new ArrayList<>();
         String location = System.getProperty("user.dir");
-        File file = new File(location + "\\temp\\");
+        File file = new File(location + "/temp/");
         try {
             file.mkdir();
-            File pdfFile = new File(location + "\\temp\\stuff.pdf");
+            File pdfFile = new File(location + "/temp/stuff.pdf");
             pdfFile.createNewFile();
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(location + "\\temp\\stuff.pdf"));
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(location + "/temp/stuff.pdf"));
             Document doc = new Document(pdfDoc, new PageSize(1200, 600));
             int i = 0;
             ArrayList<Slide> slides = slideshow.getSlides();
@@ -61,8 +61,8 @@ public class PDFConverter {
                 panes.add(slide.pane);
             }
             for (Pane pane : panes) {
-                PdfWriter writer = new PdfWriter(location + "\\temp\\" + i + ".png");
-                String imageFile = location + "\\temp\\" + i + ".png";
+                PdfWriter writer = new PdfWriter(location + "/temp/" + i + ".png");
+                String imageFile = location + "/temp/" + i + ".png";
                 System.out.println(imageFile);
                 ImageData data = ImageDataFactory.create(imageFile);
                 com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(data);
