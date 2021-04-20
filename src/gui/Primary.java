@@ -77,7 +77,6 @@ public class Primary extends Application{
         textBtn.setUserData("Line");
         textBtn.setTooltip(new Tooltip("Click to add text"));
         textBtn.setOnAction(new EventHandler<ActionEvent>() {
-            //fill in with modified code from project 1
             @Override
             public void handle(ActionEvent event){
                 textBtn.setText("You pressed the add text button");
@@ -89,7 +88,6 @@ public class Primary extends Application{
         addImageButton.setOnAction(new EventHandler<ActionEvent> (){
             @Override
             public void handle(ActionEvent event){
-                //addImageButton.setText("You pressed the add image button");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Choose image");
                 File file = fileChooser.showOpenDialog(stage);
@@ -140,8 +138,6 @@ public class Primary extends Application{
                 slide.display();
             }
         });
-
-        ///////////////////////////////////
 
         ArrayList<Image> images = slide.getImages();
         for (Image image : images) {
@@ -195,7 +191,6 @@ public class Primary extends Application{
             });
         }
 
-        /////////////////////////////////////////////
 
         Button nextSlideButton = new Button("Next Slide");
         nextSlideButton.setOnAction(new EventHandler<ActionEvent> (){
@@ -255,7 +250,6 @@ public class Primary extends Application{
             vb.getChildren().add(b);
         }
 
-        /////////////////////////////////////////////////////
         grid.getChildren().add(pane);
         border.setLeft(vb);
         border.setCenter(grid);
