@@ -5,13 +5,10 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -19,23 +16,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import pdf.PDFConverter;
 import slides.*;
 import javafx.scene.Group;
-
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
-import javafx.application.Application;
-import javafx.event.*;
-import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
-import javafx.geometry.Insets;
-import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-import javafx.stage.Stage;
+
 import slides.Image;
 import slides.Text;
 
@@ -48,9 +35,6 @@ public class Primary extends Application{
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(10, 10, 10, 10));
         ArrayList<Button> buttons = new ArrayList<Button>();
-
-        //Label label = new Label("This is a test label!");
-        //Scene scene = new Scene(label, 1200, 600);
 
         DatabaseSetup.setup();
         Slide slide = new Slide(1);
@@ -80,7 +64,6 @@ public class Primary extends Application{
                 "-fx-border-style: solid inside;" +
                 "-fx-border-width: 2;" +
                 "-fx-border-color: black;");
-        //group.getChildren().add(border);
         VBox vb = new VBox();
         vb.setPadding(new Insets(10));
         vb.setSpacing(8);
@@ -224,9 +207,7 @@ public class Primary extends Application{
                 nextSlideButton.setText("You pressed the next slide button");
             }
         });
-        //group.getChildren().add(nextSlideButton);
-        //grid.add(nextSlideButton, 0, 0);
-        //grid.setMargin(nextSlideButton, new Insets(5,5,5,5));
+
         buttons.add(nextSlideButton);
 
         Button prevSlideButton = new Button("Previous Slide");
@@ -236,11 +217,8 @@ public class Primary extends Application{
                 prevSlideButton.setText("You pressed the previous slide button");
             }
         });
-        //group.getChildren().add(prevSlideButton);
-        //grid.add(prevSlideButton, 0, 1);
-        //grid.setMargin(prevSlideButton, new Insets(5,5,5,5));
-        buttons.add(prevSlideButton);
 
+        buttons.add(prevSlideButton);
 
         Button soundButton = new Button("Add Sound Effect");
         soundButton.setOnAction(new EventHandler<ActionEvent> (){
@@ -259,14 +237,9 @@ public class Primary extends Application{
                 slide.display();
             }
         });
-        //group.getChildren().add(soundButton);
-        //grid.add(soundButton, 0, 2);
-        //grid.setMargin(soundButton, new Insets(5,5,5,5));
+
         buttons.add(soundButton);
 
-       // group.getChildren().add(addImageButton);
-        //grid.add(addImageButton, 0, 3);
-        //grid.setMargin(addImageButton, new Insets(5,5,5,5));
         buttons.add(addImageButton);
 
         Button addSlideButton = new Button("Add a New Slide");
@@ -276,18 +249,11 @@ public class Primary extends Application{
                 addSlideButton.setText("You pressed the add slide button");
             }
         });
-        //group.getChildren().add(addSlideButton);
-        //grid.add(addSlideButton, 0, 4);
-        //grid.setMargin(addSlideButton, new Insets(5,5,5,5));
         buttons.add(addSlideButton);
 
         for (Button b : buttons) {
             vb.getChildren().add(b);
         }
-
-
-
-
 
         /////////////////////////////////////////////////////
         grid.getChildren().add(pane);
@@ -295,8 +261,6 @@ public class Primary extends Application{
         border.setCenter(grid);
 
         Scene scene = new Scene(border, 1350, 600);
-
-        //stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
 
